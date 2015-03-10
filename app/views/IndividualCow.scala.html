@@ -1,0 +1,91 @@
+@import controllers.routes.javascript._
+
+@main("Welcome to My Play") {
+
+  <section id="container" >
+
+@commonTemplate()
+
+      <section id="main-content">
+          <section class="wrapper site-min-height">
+          	<h3><i class="fa fa-angle-right"></i> Details Page</h3>
+          	<div class="row mt">
+          		<div class="col-lg-12">
+          		<script type="text/javascript" src="@routes.Application.javascriptRoutes"></script>         		
+          		<p>Please Select Individual Cow to view detailed report</p>
+          		<select class="form-control" id="cowIdentifier" onchange="cowDetails()">
+          		          <option>-----Select the Cow----</option>
+						  <option value="1">1</option>
+						  <option value="2">2</option>
+						  <option value="3">3</option>
+						  <option value="4">4</option>
+						  <option value="5">5</option>
+				</select>
+          		</div>
+          	</div>
+          	
+			 <div id="morris">
+                  <div class="row mt">
+                      <div class="col-lg-6">
+                          <div class="content-panel">
+                              <h4><i class="fa fa-angle-right"></i> Cow Temperature for today</h4>
+                              <div class="panel-body">
+                                  <div id="hero-bar" class="graph"></div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-6">
+                          <div class="content-panel">
+                              <h4><i class="fa fa-angle-right"></i> Chart Example 2</h4>
+                              <div class="panel-body">
+                                  <div id="hero-area" class="graph"></div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row mt">
+                      <div class="col-lg-6">
+                          
+                      </div>
+                      <div class="col-lg-6">
+                          
+                      </div>
+                  </div>
+              </div>
+              <!-- page end-->
+		</section>
+      </section><!-- /MAIN CONTENT -->
+
+@footer()
+
+  </section>
+
+    <!-- js placed at the end of the document so the pages load faster -->
+    <script type="text/javascript" charset="utf-8">
+	      var cowDetails = function() {
+		      var cowValue = $('#cowIdentifier').val();
+		      jsRoutes.controllers.Application.viewIndividualCow(cowValue).ajax({
+		        success: function(tempData) {
+			        var tempData2 = JSON.parse(tempData);
+		        	Morris.Bar({
+			            element: 'hero-bar',
+			            data: tempData2,
+			            xkey: 'time',
+			            ykeys: ['Temperature'],
+			            labels: ['Temperature'],
+			            barRatio: 0.2,
+			            xLabelAngle: 35,
+			            hideHover: 'auto',
+			            barColors: ['#ac92ec']
+			          });
+		          $("#result").html(data);
+		        },
+		        error: function() {
+		          alert("Error!")
+		        }
+		      })
+	    }; 	 
+
+     </script>
+
+}
