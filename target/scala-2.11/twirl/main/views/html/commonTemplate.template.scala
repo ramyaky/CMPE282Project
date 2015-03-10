@@ -35,7 +35,7 @@ Seq[Any](format.raw/*1.7*/("""<!-- *********************************************
                   <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
               </div>
             <!--logo start-->
-            <a href="index.html" class="logo"><b>SMART DAIRY APP</b></a>
+            <a href="index.html" class="logo"><b>SMART APP</b></a>
             <!--logo end-->
             <div class="top-menu">
                 <ul class="nav pull-right top-menu">
@@ -54,7 +54,7 @@ Seq[Any](format.raw/*1.7*/("""<!-- *********************************************
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
 
-                  <p class="centered"><a href="profile.html"><img src=""""),_display_(/*29.73*/routes/*29.79*/.Assets.at("images/ui-sam.jpg")),format.raw/*29.110*/("""" class="img-circle" width="60"></a></p>
+                  <p class="centered"><a href="profile.html"><img src=""""),_display_(/*29.73*/routes/*29.79*/.Assets.at("images/tible.png")),format.raw/*29.109*/("""" class="img-circle" width="60" style="background-color: white;"></a></p>
                   <h5 class="centered">Admin</h5>
 
                   <li class="mt">
@@ -64,25 +64,15 @@ Seq[Any](format.raw/*1.7*/("""<!-- *********************************************
                       </a>
                   </li>
 
-                  <li class="sub-menu">
-                      <a class="active" href="javascript:;" >
-                          <i class="fa fa-book"></i>
-                          <span>Extra Pages</span>
-                      </a>
-                      <ul class="sub">
-                          <li class="active"><a  href="blank.html">Blank Page</a></li>
-                          <li><a  href="login.html">Login</a></li>
-                          <li><a  href="lock_screen.html">Lock Screen</a></li>
-                      </ul>
-                  </li>
-                  <li class="sub-menu">
+                 <li class="sub-menu">
                       <a href="javascript:;" >
-                          <i class=" fa fa-bar-chart-o"></i>
-                          <span>Charts</span>
+                          <i class="fa fa-desktop"></i>
+                          <span>Individual Cow Details</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="morris.html">Morris</a></li>
-                          <li><a  href="chartjs.html">Chartjs</a></li>
+                          <li><a  href="general.html">General</a></li>
+                          <li><a  href="buttons.html">Buttons</a></li>
+                          <li><a  href="panels.html">Panels</a></li>
                       </ul>
                   </li>
 
@@ -109,10 +99,10 @@ Seq[Any](format.raw/*1.7*/("""<!-- *********************************************
 }
               /*
                   -- GENERATED --
-                  DATE: Mon Mar 09 22:43:20 PDT 2015
+                  DATE: Tue Mar 10 15:57:32 PDT 2015
                   SOURCE: /home/ramyaky/Ramya/play-2.2.4/CMPE282Project-master/app/views/commonTemplate.scala.html
-                  HASH: 80fc2e0e16eccbca28b8a12c5426e8bd6e1cb620
-                  MATRIX: 807->6|2453->1625|2468->1631|2521->1662|2706->1820|2726->1831|2778->1862
+                  HASH: d7b26d335e6de2e7ae6ed219da30d5cfe8d00695
+                  MATRIX: 807->6|2447->1619|2462->1625|2514->1655|2732->1846|2752->1857|2804->1888
                   LINES: 29->1|57->29|57->29|57->29|61->33|61->33|61->33
                   -- GENERATED --
               */

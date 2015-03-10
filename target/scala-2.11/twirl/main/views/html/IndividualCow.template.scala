@@ -20,36 +20,37 @@ import play.mvc.Http.Context.Implicit._
 import views.html._
 import controllers.routes.javascript._
 /**/
-object IndividualCow extends BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with play.twirl.api.Template0[play.twirl.api.HtmlFormat.Appendable] {
+object IndividualCow extends BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with play.twirl.api.Template1[List[String],play.twirl.api.HtmlFormat.Appendable] {
 
   /**/
-  def apply():play.twirl.api.HtmlFormat.Appendable = {
+  def apply/*3.2*/(noOfCowsInCattle: List[String]):play.twirl.api.HtmlFormat.Appendable = {
       _display_ {
 
-Seq[Any](_display_(/*3.2*/main("Welcome to My Play")/*3.28*/ {_display_(Seq[Any](format.raw/*3.30*/("""
+Seq[Any](format.raw/*3.34*/("""
 
-  """),format.raw/*5.3*/("""<section id="container" >
+"""),_display_(/*5.2*/main("Welcome to My Play")/*5.28*/ {_display_(Seq[Any](format.raw/*5.30*/("""
 
-"""),_display_(/*7.2*/commonTemplate()),format.raw/*7.18*/("""
+  """),format.raw/*7.3*/("""<section id="container" >
 
-      """),format.raw/*9.7*/("""<section id="main-content">
+"""),_display_(/*9.2*/commonTemplate()),format.raw/*9.18*/("""
+
+      """),format.raw/*11.7*/("""<section id="main-content">
           <section class="wrapper site-min-height">
           	<h3><i class="fa fa-angle-right"></i> Details Page</h3>
-          	<div class="row mt">
-          		<div class="col-lg-12">
-          		<script type="text/javascript" src=""""),_display_(/*14.50*/routes/*14.56*/.Application.javascriptRoutes),format.raw/*14.85*/(""""></script>         		
-          		<p>Please Select Individual Cow to view detailed report</p>
-          		<select class="form-control" id="cowIdentifier" onchange="cowDetails()">
-          		          <option>-----Select the Cow----</option>
-						  <option value="1">1</option>
-						  <option value="2">2</option>
-						  <option value="3">3</option>
-						  <option value="4">4</option>
-						  <option value="5">5</option>
-				</select>
-          		</div>
-          	</div>
-          	
+            <div class="row mt">
+                  <div class="col-lg-12">
+                  <script type="text/javascript" src=""""),_display_(/*16.56*/routes/*16.62*/.Application.javascriptRoutes),format.raw/*16.91*/(""""></script>                 
+                  <p>Please Select Individual Cow to view detailed report</p>
+                  <select class="form-control" id="cowIdentifier" onchange="cowDetails();cowDetails1()">
+                            <option>-----Select the Cow----</option>
+                            """),_display_(/*20.30*/if(noOfCowsInCattle != null)/*20.58*/{_display_(Seq[Any](format.raw/*20.59*/("""  
+                              """),_display_(/*21.32*/for(singlenoOfCowsInCattle <- noOfCowsInCattle) yield /*21.79*/ {_display_(Seq[Any](format.raw/*21.81*/("""
+                              """),format.raw/*22.31*/("""<option value=""""),_display_(/*22.47*/singlenoOfCowsInCattle),format.raw/*22.69*/("""">"""),_display_(/*22.72*/singlenoOfCowsInCattle),format.raw/*22.94*/("""</option>
+                              """)))}),format.raw/*23.32*/("""
+                          """)))}),format.raw/*24.28*/("""
+                """),format.raw/*25.17*/("""</select>
+                  </div>
+              </div>	
 			 <div id="morris">
                   <div class="row mt">
                       <div class="col-lg-6">
@@ -62,7 +63,7 @@ Seq[Any](_display_(/*3.2*/main("Welcome to My Play")/*3.28*/ {_display_(Seq[Any]
                       </div>
                       <div class="col-lg-6">
                           <div class="content-panel">
-                              <h4><i class="fa fa-angle-right"></i> Chart Example 2</h4>
+                              <h4><i class="fa fa-angle-right"></i> Recent Four Records </h4>
                               <div class="panel-body">
                                   <div id="hero-area" class="graph"></div>
                               </div>
@@ -82,56 +83,91 @@ Seq[Any](_display_(/*3.2*/main("Welcome to My Play")/*3.28*/ {_display_(Seq[Any]
 		</section>
       </section><!-- /MAIN CONTENT -->
 
-"""),_display_(/*59.2*/footer()),format.raw/*59.10*/("""
+"""),_display_(/*60.2*/footer()),format.raw/*60.10*/("""
 
-  """),format.raw/*61.3*/("""</section>
+  """),format.raw/*62.3*/("""</section>
 
     <!-- js placed at the end of the document so the pages load faster -->
     <script type="text/javascript" charset="utf-8">
-	      var cowDetails = function() """),format.raw/*65.36*/("""{"""),format.raw/*65.37*/("""
-		      """),format.raw/*66.9*/("""var cowValue = $('#cowIdentifier').val();
-		      jsRoutes.controllers.Application.viewIndividualCow(cowValue).ajax("""),format.raw/*67.75*/("""{"""),format.raw/*67.76*/("""
-		        """),format.raw/*68.11*/("""success: function(tempData) """),format.raw/*68.39*/("""{"""),format.raw/*68.40*/("""
-			        """),format.raw/*69.12*/("""var tempData2 = JSON.parse(tempData);
-		        	Morris.Bar("""),format.raw/*70.23*/("""{"""),format.raw/*70.24*/("""
-			            """),format.raw/*71.16*/("""element: 'hero-bar',
+	      var cowDetails = function() """),format.raw/*66.36*/("""{"""),format.raw/*66.37*/("""
+              """),format.raw/*67.15*/("""$("#hero-bar").empty();
+		      var cowValue = $('#cowIdentifier').val();
+		      jsRoutes.controllers.Application.viewIndividualCow(cowValue).ajax("""),format.raw/*69.75*/("""{"""),format.raw/*69.76*/("""
+		        """),format.raw/*70.11*/("""success: function(tempData) """),format.raw/*70.39*/("""{"""),format.raw/*70.40*/("""
+			        """),format.raw/*71.12*/("""var tempData2 = JSON.parse(tempData);
+		        	Morris.Bar("""),format.raw/*72.23*/("""{"""),format.raw/*72.24*/("""
+			            """),format.raw/*73.16*/("""element: 'hero-bar',
 			            data: tempData2,
 			            xkey: 'time',
 			            ykeys: ['Temperature'],
 			            labels: ['Temperature'],
 			            barRatio: 0.2,
-			            xLabelAngle: 35,
+			            xLabelAngle: 8,
 			            hideHover: 'auto',
 			            barColors: ['#ac92ec']
-			          """),format.raw/*80.14*/("""}"""),format.raw/*80.15*/(""");
+			          """),format.raw/*82.14*/("""}"""),format.raw/*82.15*/(""");
 		          $("#result").html(data);
-		        """),format.raw/*82.11*/("""}"""),format.raw/*82.12*/(""",
-		        error: function() """),format.raw/*83.29*/("""{"""),format.raw/*83.30*/("""
-		          """),format.raw/*84.13*/("""alert("Error!")
-		        """),format.raw/*85.11*/("""}"""),format.raw/*85.12*/("""
-		      """),format.raw/*86.9*/("""}"""),format.raw/*86.10*/(""")
-	    """),format.raw/*87.6*/("""}"""),format.raw/*87.7*/("""; 	 
+		        """),format.raw/*84.11*/("""}"""),format.raw/*84.12*/(""",
+		        error: function() """),format.raw/*85.29*/("""{"""),format.raw/*85.30*/("""
+		          """),format.raw/*86.13*/("""alert("Error!")
+		        """),format.raw/*87.11*/("""}"""),format.raw/*87.12*/("""
+		      """),format.raw/*88.9*/("""}"""),format.raw/*88.10*/(""")
+	    """),format.raw/*89.6*/("""}"""),format.raw/*89.7*/("""; 	 
+
+    var cowDetails1 = function() """),format.raw/*91.34*/("""{"""),format.raw/*91.35*/("""
+              """),format.raw/*92.15*/("""$("#hero-area").empty();
+              var cowValue = $('#cowIdentifier').val();
+              jsRoutes.controllers.Application.secondGraph(cowValue).ajax("""),format.raw/*94.75*/("""{"""),format.raw/*94.76*/("""
+                    """),format.raw/*95.21*/("""success: function(tempData) """),format.raw/*95.49*/("""{"""),format.raw/*95.50*/("""
+                        """),format.raw/*96.25*/("""var tempData2 = JSON.parse(tempData);
+                        Morris.Bar("""),format.raw/*97.36*/("""{"""),format.raw/*97.37*/("""
+                            """),format.raw/*98.29*/("""element: 'hero-area',
+                            data: tempData2,
+                            xkey: 'time',
+                            ykeys: ['Temperature'],
+                            labels: ['Temperature'],
+                            barRatio: 0.2,
+                            xLabelAngle: 8,
+                            hideHover: 'auto',
+                            barColors: ['#ac92ec']
+                          """),format.raw/*107.27*/("""}"""),format.raw/*107.28*/("""); 
+                        /* Morris.Line("""),format.raw/*108.40*/("""{"""),format.raw/*108.41*/("""
+                            """),format.raw/*109.29*/("""element: 'hero-line',
+                            data: tempData2,
+                            xkey: 'time',
+                            ykeys: ['Temperature'],
+                            labels: ['Temperature']
+                          """),format.raw/*114.27*/("""}"""),format.raw/*114.28*/("""); */
+                      $("#result").html(data);
+                    """),format.raw/*116.21*/("""}"""),format.raw/*116.22*/(""",
+                    error: function() """),format.raw/*117.39*/("""{"""),format.raw/*117.40*/("""
+                      """),format.raw/*118.23*/("""alert("Error!")
+                    """),format.raw/*119.21*/("""}"""),format.raw/*119.22*/("""
+                  """),format.raw/*120.19*/("""}"""),format.raw/*120.20*/(""")
+              
+              
+        """),format.raw/*123.9*/("""}"""),format.raw/*123.10*/(""";
 
      </script>
 
-""")))}),format.raw/*91.2*/("""
+""")))}),format.raw/*127.2*/("""
 """))}
   }
 
-  def render(): play.twirl.api.HtmlFormat.Appendable = apply()
+  def render(noOfCowsInCattle:List[String]): play.twirl.api.HtmlFormat.Appendable = apply(noOfCowsInCattle)
 
-  def f:(() => play.twirl.api.HtmlFormat.Appendable) = () => apply()
+  def f:((List[String]) => play.twirl.api.HtmlFormat.Appendable) = (noOfCowsInCattle) => apply(noOfCowsInCattle)
 
   def ref: this.type = this
 
 }
               /*
                   -- GENERATED --
-                  DATE: Mon Mar 09 18:32:36 PDT 2015
+                  DATE: Tue Mar 10 15:58:58 PDT 2015
                   SOURCE: /home/ramyaky/Ramya/play-2.2.4/CMPE282Project-master/app/views/IndividualCow.scala.html
-                  HASH: ee2bb795e1de3453bc58e26a0b4071afe3caf6ed
-                  MATRIX: 844->44|878->70|917->72|949->78|1004->108|1040->124|1076->134|1372->403|1387->409|1437->438|3300->2275|3329->2283|3362->2289|3568->2467|3597->2468|3634->2478|3779->2595|3808->2596|3848->2608|3904->2636|3933->2637|3974->2650|4063->2711|4092->2712|4137->2729|4482->3046|4511->3047|4591->3099|4620->3100|4679->3131|4708->3132|4750->3146|4805->3173|4834->3174|4871->3184|4900->3185|4935->3193|4963->3194|5020->3221
-                  LINES: 29->3|29->3|29->3|31->5|33->7|33->7|35->9|40->14|40->14|40->14|85->59|85->59|87->61|91->65|91->65|92->66|93->67|93->67|94->68|94->68|94->68|95->69|96->70|96->70|97->71|106->80|106->80|108->82|108->82|109->83|109->83|110->84|111->85|111->85|112->86|112->86|113->87|113->87|117->91
+                  HASH: 50d2ced5d1dccb6b691901b44c24670a31a9959a
+                  MATRIX: 775->44|895->76|925->81|959->107|998->109|1030->115|1085->145|1121->161|1158->171|1467->453|1482->459|1532->488|1873->802|1910->830|1949->831|2011->866|2074->913|2114->915|2174->947|2217->963|2260->985|2290->988|2333->1010|2406->1052|2466->1081|2512->1099|3936->2497|3965->2505|3998->2511|4204->2689|4233->2690|4277->2706|4455->2856|4484->2857|4524->2869|4580->2897|4609->2898|4650->2911|4739->2972|4768->2973|4813->2990|5157->3306|5186->3307|5266->3359|5295->3360|5354->3391|5383->3392|5425->3406|5480->3433|5509->3434|5546->3444|5575->3445|5610->3453|5638->3454|5707->3495|5736->3496|5780->3512|5965->3669|5994->3670|6044->3692|6100->3720|6129->3721|6183->3747|6285->3821|6314->3822|6372->3852|6835->4286|6865->4287|6938->4331|6968->4332|7027->4362|7300->4606|7330->4607|7434->4682|7464->4683|7534->4724|7564->4725|7617->4749|7683->4786|7713->4787|7762->4807|7792->4808|7863->4851|7893->4852|7948->4876
+                  LINES: 26->3|29->3|31->5|31->5|31->5|33->7|35->9|35->9|37->11|42->16|42->16|42->16|46->20|46->20|46->20|47->21|47->21|47->21|48->22|48->22|48->22|48->22|48->22|49->23|50->24|51->25|86->60|86->60|88->62|92->66|92->66|93->67|95->69|95->69|96->70|96->70|96->70|97->71|98->72|98->72|99->73|108->82|108->82|110->84|110->84|111->85|111->85|112->86|113->87|113->87|114->88|114->88|115->89|115->89|117->91|117->91|118->92|120->94|120->94|121->95|121->95|121->95|122->96|123->97|123->97|124->98|133->107|133->107|134->108|134->108|135->109|140->114|140->114|142->116|142->116|143->117|143->117|144->118|145->119|145->119|146->120|146->120|149->123|149->123|153->127
                   -- GENERATED --
               */
           

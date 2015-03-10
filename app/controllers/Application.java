@@ -1,12 +1,15 @@
 package controllers;
 
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.Random;
 
 import org.parse4j.Parse;
@@ -14,41 +17,139 @@ import org.parse4j.ParseException;
 import org.parse4j.ParseObject;
 import org.parse4j.ParseQuery;
 
-import play.core.Router.JavascriptReverseRoute;
+import com.fasterxml.jackson.databind.JsonNode;
+
 import play.*;
+import play.libs.Json;
 import play.mvc.*;
 import views.html.*;
-import play.data.*;
-
-import com.google.gson.Gson;
-
-
 
 public class Application extends Controller {
 
-    public static Result index() {
-        return ok(index.render("Your new application is ready."));
-    }
+	public static Result index() {
+		return ok(index.render("Your new application is ready."));
+	}
+	public static Result login(){
+		Logger.debug("------Entered into login() method in Application Controller------");
 
-    public static Result dashboard() {
-        return ok(dashboard.render());
-    }
-    
-    public static Result viewCowDetails() {
-        return ok(IndividualCow.render());
-        
-    }
-    
-    public static Result viewIndividualCow(String cowIdentifier) throws ParseException {
+		Logger.debug("------Exit from login() method in Application Controller------");
+		return ok(login.render("Dashboard Page"));
+	}
+	public static Result dashboard() throws ParseException {
+
+		//play.mvc.Http.Context.current().session().put("hi", "eww");
+		ArrayList<Integer> chartvalues = new ArrayList<Integer>();
+		chartvalues.add(65);
+		chartvalues.add(59);
+		chartvalues.add(90);
+		chartvalues.add(81);
+
+		JsonNode myJsonNode = Json.toJson(chartvalues);
+		String jsonResult = Json.stringify(myJsonNode);
+		
+		List<ParseObject> cowObjects = new ArrayList<ParseObject>();
+		Set<Object> noOfCowsInCattle = new HashSet<Object>();
+		ArrayList<ParseObject> noOfSickCows = new ArrayList<ParseObject>();
+		List<String> notifications = new ArrayList<String>();
+		
+		String statusOk = "Abnormal";
+
+		//Parse.initialize("XIboxpRHULEdPtgn6eL7IlScEW3l0tgRVkeTLyKs", "OofZ3FPeAMsgtdr1xFcT7Fn5iQQylB8EHukX406O");
+		
+		Parse.initialize("f5GFzmulS2Utcgxct7GSTrxAFqdfftPOx9gkf8l8", "DuuCkneE6gphtMnHWaBd2PoZnQRh7tLys9HQ3hSP");
+		ParseQuery<ParseObject> query = ParseQuery.getQuery("MyTestObject");
+		query.orderByDescending("createdAt");
+		cowObjects = query.find();	
+		
+		ParseObject heatIndex =  cowObjects.get(0);
+		double HI = 0.5 * (heatIndex.getInt("AmbientTemp") + 61.0 + ((heatIndex.getInt("AmbientTemp") - 68.0) * 1.2) + (heatIndex.getInt("Humidity") * 0.094));
+		
+		for(ParseObject cowObject : cowObjects){
+			
+			noOfCowsInCattle.add(cowObject.get("CowID"));
+		}
+		
+		ArrayList<HashMap> cowTempArr = new ArrayList<HashMap>();
+		HashMap<String,String> thirdGraphMap = new HashMap<String,String>();
+		for (Object thirdGraph : noOfCowsInCattle) {
+			ParseQuery<ParseObject> queryGraph = ParseQuery.getQuery("MyTestObject");
+			queryGraph.orderByDescending("createdAt");
+			queryGraph.whereEqualTo("CowID",thirdGraph);
+			ParseObject dudu = queryGraph.find().get(0);
+			
+			if((Integer)dudu.getInt("ChanceOfSick") == 4)
+				noOfSickCows.add(dudu);
+			
+			thirdGraphMap.put("cow", "cow" + thirdGraph.toString());
+			thirdGraphMap.put("temperature",dudu.getInt("BodyTemp") +"");
+			cowTempArr.add(thirdGraphMap);
+			notifications.add("Cow"+thirdGraph.toString()+" experienced sudden rise in its body temperature");
+			
+		}
+		
+		if(noOfSickCows.size() == 0){
+			statusOk = "OK";
+		}
+		
+		JsonNode JsonNode = Json.toJson(cowTempArr);
+		String myjsonResult = Json.stringify(JsonNode);
+		
+		JsonNode JsonNodeNote = Json.toJson(notifications);
+		String notify = Json.stringify(JsonNodeNote);
+		System.out.println("myjsonResult: "+ myjsonResult);
+
+		return ok(dashboard.render("HelloWorld",noOfCowsInCattle.size()+"",statusOk,noOfSickCows.size()+"",jsonResult,HI+"",myjsonResult,notifications));
+	}
+	/*public static Result viewIndividualCow(int CowID) throws ParseException {
+		//GET		/cow						controllers.Application.viewIndividualCow()
+
+		CowID = 1;
+		
+		Date date = new Date();
+		HashMap<Integer,HashMap<String,String>> TodayTempVsTime = new HashMap<Integer,HashMap<String,String>>();
+		HashMap<Integer,HashMap<String,String>> recentTempVsTime = new HashMap<Integer,HashMap<String,String>>();
+		List<ParseObject> cowDetails = new ArrayList<ParseObject>();
+		HashMap<String,String> temperatureForToday = new HashMap<String,String>();
+		HashMap<String,String> recentFourTemperatures = new HashMap<String,String>();
+		Parse.initialize("f5GFzmulS2Utcgxct7GSTrxAFqdfftPOx9gkf8l8", "DuuCkneE6gphtMnHWaBd2PoZnQRh7tLys9HQ3hSP");
+		ParseQuery<ParseObject> query = ParseQuery.getQuery("MyTestObject");
+
+		GregorianCalendar cal = new GregorianCalendar();
+		cal.setTime(date);
+		date = truncateTime( cal );
+
+		query.whereEqualTo("CowID",CowID);
+		query.limit(4);
+		cowDetails = query.find();
+		for(ParseObject cow: cowDetails){
+			recentFourTemperatures.put(cow.getCreatedAt().toString(), cow.getInt("BodyTemp")+"");
+			Date d3 = cow.getCreatedAt();
+				d3  =  truncateTime( cal );
+			if(0 == d3.compareTo(date)){
+				temperatureForToday.put(cow.getCreatedAt().toString(), cow.getInt("BodyTemp")+"");
+			}
+		}
+		TodayTempVsTime.put(CowID, temperatureForToday);
+		recentTempVsTime.put(CowID, recentFourTemperatures);
+
+		return ok(cow.render("Your new application is ready."));
+	}
+	private static Date truncateTime(Calendar cal) {
+		cal.set(Calendar.HOUR_OF_DAY, 0);
+		cal.set(Calendar.MINUTE, 0);
+		cal.set(Calendar.SECOND, 0);
+		cal.set(Calendar.MILLISECOND, 0);
+		return new Date(cal.getTime().getTime());
+	}*/
+	public static Result viewIndividualCow(String cowIdentifier) throws ParseException {
         System.out.println("cowIdentifier:" + cowIdentifier);
-    	Parse.initialize("XIboxpRHULEdPtgn6eL7IlScEW3l0tgRVkeTLyKs", "OofZ3FPeAMsgtdr1xFcT7Fn5iQQylB8EHukX406O");
+    	//Parse.initialize("XIboxpRHULEdPtgn6eL7IlScEW3l0tgRVkeTLyKs", "OofZ3FPeAMsgtdr1xFcT7Fn5iQQylB8EHukX406O");
+        Parse.initialize("f5GFzmulS2Utcgxct7GSTrxAFqdfftPOx9gkf8l8", "DuuCkneE6gphtMnHWaBd2PoZnQRh7tLys9HQ3hSP");
         int cowId = Integer.valueOf(cowIdentifier);
         Date date = new Date();
         
         List<ParseObject> cowDetails = new ArrayList<ParseObject>();
         List<Map<String, String>> tempByCow = new ArrayList<Map<String, String>>();
-        List<Map<String, String>> recentTemp = new ArrayList<Map<String, String>>();
-        
         
         ParseQuery<ParseObject> query = ParseQuery.getQuery("MyTestObject");
 
@@ -56,18 +157,12 @@ public class Application extends Controller {
         cal.setTime(date);
         date = truncateTime( cal );
 
-  
         query.whereEqualTo("CowID",cowId);
         query.orderByDescending("createdAt").limit(4);
         cowDetails = query.find();
        
         for(ParseObject cow: cowDetails){
         	
-        	HashMap<String,String> recentFourTemperatures = new HashMap<String,String>();
-            recentFourTemperatures.put(cow.getCreatedAt().toString(), cow.getInt("BodyTemp")+"");
-            recentTemp.add(recentFourTemperatures);
-            System.out.println("recent temp:" +recentTemp);
-            
             Date d3 = cow.getCreatedAt();
                 d3  =  truncateTime( cal );
             if(0 == d3.compareTo(date)){
@@ -79,11 +174,41 @@ public class Application extends Controller {
             }
         }
         
-        Gson gson = new Gson();
-        String jsonObject = gson.toJson(tempByCow);
-        return ok(jsonObject);
+        JsonNode JsonNode = Json.toJson(tempByCow);
+        
+		String myjsonResult = Json.stringify(JsonNode);
+		
+        return ok(myjsonResult);
     }
-    
+	public static Result secondGraph(String cowIdentifier) throws ParseException {
+        System.out.println("cowIdentifier:" + cowIdentifier);
+        
+        Parse.initialize("f5GFzmulS2Utcgxct7GSTrxAFqdfftPOx9gkf8l8", "DuuCkneE6gphtMnHWaBd2PoZnQRh7tLys9HQ3hSP");
+        int cowId = Integer.valueOf(cowIdentifier);
+        
+        List<ParseObject> cowDetails = new ArrayList<ParseObject>();
+        List<Map<String, String>> recentTemp = new ArrayList<Map<String, String>>();
+        
+        
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("MyTestObject");
+
+        query.whereEqualTo("CowID",cowId);
+        query.orderByDescending("createdAt").limit(4);
+        cowDetails = query.find();
+       
+        for(ParseObject cow: cowDetails){
+        	
+        	HashMap<String,String> recentFourTemperatures = new HashMap<String,String>();
+        	recentFourTemperatures.put("time", cow.getCreatedAt().toString());
+        	recentFourTemperatures.put("Temperature", cow.getInt("BodyTemp")+"");
+            recentTemp.add(recentFourTemperatures);
+        }
+        
+        JsonNode JsonNodeRecent = Json.toJson(recentTemp);
+		String JsonNodeRecentResult = Json.stringify(JsonNodeRecent);
+		
+        return ok(JsonNodeRecentResult);
+    }
     private static Date truncateTime(Calendar cal) {
         cal.set(Calendar.HOUR_OF_DAY, 0);
         cal.set(Calendar.MINUTE, 0);
@@ -96,7 +221,28 @@ public class Application extends Controller {
         response().setContentType("text/javascript");
 		return ok(
                 play.Routes.javascriptRouter("jsRoutes",
-                controllers.routes.javascript.Application.viewIndividualCow()));
+                controllers.routes.javascript.Application.viewIndividualCow(),
+                controllers.routes.javascript.Application.secondGraph()));
+    }
+    public static Result viewCowDetails() throws ParseException {
+    	
+    	List<ParseObject> cowObjects = new ArrayList<ParseObject>();
+		Set<String> noOfCowsInCattle = new HashSet<String>();
+		List<String> noOfCows = new ArrayList<String>();
+		
+    	Parse.initialize("f5GFzmulS2Utcgxct7GSTrxAFqdfftPOx9gkf8l8", "DuuCkneE6gphtMnHWaBd2PoZnQRh7tLys9HQ3hSP");
+    	ParseQuery<ParseObject> query = ParseQuery.getQuery("MyTestObject");
+		query.orderByDescending("createdAt");
+		cowObjects = query.find();	
+		
+		for(ParseObject cowObject : cowObjects){
+			
+			noOfCowsInCattle.add(cowObject.get("CowID").toString());
+		}
+		noOfCows.addAll(noOfCowsInCattle);
+        return ok(IndividualCow.render(noOfCows));
+        
+        
     }
 
     public static Result simulationProcess() throws ParseException {
@@ -135,9 +281,6 @@ public class Application extends Controller {
                 break;
             }
         }
-        Gson gson = new Gson();
-        String jsonResponse = gson.toJson(myArray);
-        System.out.println(jsonResponse);
         System.out.println(myArray);
         return ok(simulate.render(myArray));
     }
@@ -154,5 +297,4 @@ public class Application extends Controller {
 
         return randomNum;
     }
-
 }

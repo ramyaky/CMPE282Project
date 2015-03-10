@@ -1,6 +1,6 @@
 // @SOURCE:/home/ramyaky/Ramya/play-2.2.4/CMPE282Project-master/conf/routes
-// @HASH:8598c7efe31a2250cd327b77f82077fb9b3892f8
-// @DATE:Mon Mar 09 18:36:30 PDT 2015
+// @HASH:10e4af0bd031eaa6e79d2d59a7ae7abbd8e95080
+// @DATE:Tue Mar 10 15:37:59 PDT 2015
 
 import Routes.{prefix => _prefix, defaultPrefix => _defaultPrefix}
 import play.core._
@@ -17,6 +17,7 @@ import Router.queryString
 
 // @LINE:16
 // @LINE:13
+// @LINE:11
 // @LINE:10
 // @LINE:9
 // @LINE:8
@@ -39,6 +40,7 @@ def at(file:String): Call = {
                           
 
 // @LINE:13
+// @LINE:11
 // @LINE:10
 // @LINE:9
 // @LINE:8
@@ -75,6 +77,13 @@ def dashboard(): Call = {
 }
                         
 
+// @LINE:11
+def secondGraph(cowIdentifier:String): Call = {
+   import ReverseRouteContext.empty
+   Call("GET", _prefix + { _defaultPrefix } + "viewCowDetails/secondGraph" + queryString(List(Some(implicitly[QueryStringBindable[String]].unbind("cowIdentifier", cowIdentifier)))))
+}
+                        
+
 // @LINE:6
 def index(): Call = {
    import ReverseRouteContext.empty
@@ -97,6 +106,7 @@ def javascriptRoutes(): Call = {
 
 // @LINE:16
 // @LINE:13
+// @LINE:11
 // @LINE:10
 // @LINE:9
 // @LINE:8
@@ -124,6 +134,7 @@ def at : JavascriptReverseRoute = JavascriptReverseRoute(
               
 
 // @LINE:13
+// @LINE:11
 // @LINE:10
 // @LINE:9
 // @LINE:8
@@ -176,6 +187,17 @@ def dashboard : JavascriptReverseRoute = JavascriptReverseRoute(
 )
                         
 
+// @LINE:11
+def secondGraph : JavascriptReverseRoute = JavascriptReverseRoute(
+   "controllers.Application.secondGraph",
+   """
+      function(cowIdentifier) {
+      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "viewCowDetails/secondGraph" + _qS([(""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("cowIdentifier", cowIdentifier)])})
+      }
+   """
+)
+                        
+
 // @LINE:6
 def index : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.index",
@@ -206,6 +228,7 @@ def javascriptRoutes : JavascriptReverseRoute = JavascriptReverseRoute(
 
 // @LINE:16
 // @LINE:13
+// @LINE:11
 // @LINE:10
 // @LINE:9
 // @LINE:8
@@ -228,6 +251,7 @@ def at(path:String, file:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.
                           
 
 // @LINE:13
+// @LINE:11
 // @LINE:10
 // @LINE:9
 // @LINE:8
@@ -257,6 +281,12 @@ def viewCowDetails(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
 // @LINE:7
 def dashboard(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.dashboard(), HandlerDef(this.getClass.getClassLoader, "", "controllers.Application", "dashboard", Seq(), "GET", """""", _prefix + """dashboard""")
+)
+                      
+
+// @LINE:11
+def secondGraph(cowIdentifier:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
+   controllers.Application.secondGraph(cowIdentifier), HandlerDef(this.getClass.getClassLoader, "", "controllers.Application", "secondGraph", Seq(classOf[String]), "GET", """""", _prefix + """viewCowDetails/secondGraph""")
 )
                       
 

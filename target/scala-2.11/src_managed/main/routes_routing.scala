@@ -1,6 +1,6 @@
 // @SOURCE:/home/ramyaky/Ramya/play-2.2.4/CMPE282Project-master/conf/routes
-// @HASH:8598c7efe31a2250cd327b77f82077fb9b3892f8
-// @DATE:Mon Mar 09 18:36:30 PDT 2015
+// @HASH:10e4af0bd031eaa6e79d2d59a7ae7abbd8e95080
+// @DATE:Tue Mar 10 15:37:59 PDT 2015
 
 
 import play.core._
@@ -67,20 +67,27 @@ controllers.Application.viewIndividualCow(fakeValue[String]),
 HandlerDef(this.getClass.getClassLoader, "", "controllers.Application", "viewIndividualCow", Seq(classOf[String]),"GET", """""", Routes.prefix + """viewCowDetails/individualCow"""))
         
 
+// @LINE:11
+private[this] lazy val controllers_Application_secondGraph5_route = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("viewCowDetails/secondGraph"))))
+private[this] lazy val controllers_Application_secondGraph5_invoker = createInvoker(
+controllers.Application.secondGraph(fakeValue[String]),
+HandlerDef(this.getClass.getClassLoader, "", "controllers.Application", "secondGraph", Seq(classOf[String]),"GET", """""", Routes.prefix + """viewCowDetails/secondGraph"""))
+        
+
 // @LINE:13
-private[this] lazy val controllers_Application_javascriptRoutes5_route = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("assets/javascripts/routes"))))
-private[this] lazy val controllers_Application_javascriptRoutes5_invoker = createInvoker(
+private[this] lazy val controllers_Application_javascriptRoutes6_route = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("assets/javascripts/routes"))))
+private[this] lazy val controllers_Application_javascriptRoutes6_invoker = createInvoker(
 controllers.Application.javascriptRoutes(),
 HandlerDef(this.getClass.getClassLoader, "", "controllers.Application", "javascriptRoutes", Nil,"GET", """ Javascript routing""", Routes.prefix + """assets/javascripts/routes"""))
         
 
 // @LINE:16
-private[this] lazy val controllers_Assets_at6_route = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("assets/"),DynamicPart("file", """.+""",false))))
-private[this] lazy val controllers_Assets_at6_invoker = createInvoker(
+private[this] lazy val controllers_Assets_at7_route = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("assets/"),DynamicPart("file", """.+""",false))))
+private[this] lazy val controllers_Assets_at7_invoker = createInvoker(
 controllers.Assets.at(fakeValue[String], fakeValue[String]),
 HandlerDef(this.getClass.getClassLoader, "", "controllers.Assets", "at", Seq(classOf[String], classOf[String]),"GET", """ Map static resources from the /public folder to the /assets URL path""", Routes.prefix + """assets/$file<.+>"""))
         
-def documentation = List(("""GET""", prefix,"""controllers.Application.index()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """dashboard""","""controllers.Application.dashboard()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """viewCowDetails""","""controllers.Application.viewCowDetails()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """simulation""","""controllers.Application.simulationProcess()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """viewCowDetails/individualCow""","""controllers.Application.viewIndividualCow(cowIdentifier:String)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """assets/javascripts/routes""","""controllers.Application.javascriptRoutes()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """assets/$file<.+>""","""controllers.Assets.at(path:String = "/public", file:String)""")).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
+def documentation = List(("""GET""", prefix,"""controllers.Application.index()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """dashboard""","""controllers.Application.dashboard()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """viewCowDetails""","""controllers.Application.viewCowDetails()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """simulation""","""controllers.Application.simulationProcess()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """viewCowDetails/individualCow""","""controllers.Application.viewIndividualCow(cowIdentifier:String)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """viewCowDetails/secondGraph""","""controllers.Application.secondGraph(cowIdentifier:String)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """assets/javascripts/routes""","""controllers.Application.javascriptRoutes()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """assets/$file<.+>""","""controllers.Assets.at(path:String = "/public", file:String)""")).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
   case r @ (_,_,_) => s :+ r.asInstanceOf[(String,String,String)]
   case l => s ++ l.asInstanceOf[List[(String,String,String)]]
 }}
@@ -128,18 +135,26 @@ case controllers_Application_viewIndividualCow4_route(params) => {
 }
         
 
+// @LINE:11
+case controllers_Application_secondGraph5_route(params) => {
+   call(params.fromQuery[String]("cowIdentifier", None)) { (cowIdentifier) =>
+        controllers_Application_secondGraph5_invoker.call(controllers.Application.secondGraph(cowIdentifier))
+   }
+}
+        
+
 // @LINE:13
-case controllers_Application_javascriptRoutes5_route(params) => {
+case controllers_Application_javascriptRoutes6_route(params) => {
    call { 
-        controllers_Application_javascriptRoutes5_invoker.call(controllers.Application.javascriptRoutes())
+        controllers_Application_javascriptRoutes6_invoker.call(controllers.Application.javascriptRoutes())
    }
 }
         
 
 // @LINE:16
-case controllers_Assets_at6_route(params) => {
+case controllers_Assets_at7_route(params) => {
    call(Param[String]("path", Right("/public")), params.fromPath[String]("file", None)) { (path, file) =>
-        controllers_Assets_at6_invoker.call(controllers.Assets.at(path, file))
+        controllers_Assets_at7_invoker.call(controllers.Assets.at(path, file))
    }
 }
         
