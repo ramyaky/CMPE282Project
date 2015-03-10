@@ -8,6 +8,9 @@ function getCurrentWeather(){
                 success: function(data) {
                     tempInCelsius = data.main.temp - 273.15;
                     weatherString = ", ".concat(data.weather[0].main);
+                    weatherIcon = data.weather[0].icon;
+                    src = "/assets/images/" + weatherIcon + ".png";
+                    $("#displayImage").attr("src", src);
                     unitsString = (("0".sup()).concat(" C")).concat(weatherString);
                     var tempString = (Math.round(tempInCelsius).toString()).concat(unitsString);
                     $('#weathervalue').html(tempString);              
