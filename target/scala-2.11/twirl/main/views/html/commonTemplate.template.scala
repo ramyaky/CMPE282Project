@@ -44,8 +44,7 @@ Seq[Any](format.raw/*1.7*/("""<!-- *********************************************
             </div>
         </header>
       <!--header end-->
-
-      <!-- **********************************************************************************************************************************************************
+<!-- **********************************************************************************************************************************************************
       MAIN SIDEBAR MENU
       *********************************************************************************************************************************************************** -->
       <!--sidebar start-->
@@ -54,26 +53,27 @@ Seq[Any](format.raw/*1.7*/("""<!-- *********************************************
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
 
-                  <p class="centered"><a href="profile.html"><img src=""""),_display_(/*29.73*/routes/*29.79*/.Assets.at("images/tible.png")),format.raw/*29.109*/("""" class="img-circle" width="60" style="background-color: white;"></a></p>
+                  <p class="centered"><a href="profile.html"><img src=""""),_display_(/*28.73*/routes/*28.79*/.Assets.at("images/tible.png")),format.raw/*28.109*/("""" class="img-circle" width="60" style="background-color: white;"></a></p>
                   <h5 class="centered">Admin</h5>
 
                   <li class="mt">
-                      <a href=""""),_display_(/*33.33*/controllers/*33.44*/.routes.Application.dashboard()),format.raw/*33.75*/("""">
+                      <a href=""""),_display_(/*32.33*/controllers/*32.44*/.routes.Application.dashboard()),format.raw/*32.75*/("""">
                           <i class="fa fa-dashboard"></i>
                           <span>Dashboard</span>
                       </a>
                   </li>
 
                  <li class="sub-menu">
-                      <a href="javascript:;" >
+                      <a href=""""),_display_(/*39.33*/controllers/*39.44*/.routes.Application.viewCowDetails()),format.raw/*39.80*/("""" >
                           <i class="fa fa-desktop"></i>
                           <span>Individual Cow Details</span>
                       </a>
-                      <ul class="sub">
-                          <li><a  href="general.html">General</a></li>
-                          <li><a  href="buttons.html">Buttons</a></li>
-                          <li><a  href="panels.html">Panels</a></li>
-                      </ul>
+                  </li>
+                        <li class="sub-menu">
+                      <a href=""""),_display_(/*45.33*/controllers/*45.44*/.routes.Application.simulationProcess()),format.raw/*45.83*/("""" >
+                          <i class="fa fa-desktop"></i>
+                          <span>Simulation</span>
+                      </a>
                   </li>
 
               </ul>
@@ -99,11 +99,11 @@ Seq[Any](format.raw/*1.7*/("""<!-- *********************************************
 }
               /*
                   -- GENERATED --
-                  DATE: Wed Mar 11 01:06:00 PDT 2015
+                  DATE: Wed Mar 11 01:28:40 PDT 2015
                   SOURCE: /home/ramyaky/Ramya/play-2.2.4/CMPE282Project-master/app/views/commonTemplate.scala.html
-                  HASH: d7b26d335e6de2e7ae6ed219da30d5cfe8d00695
-                  MATRIX: 807->6|2447->1619|2462->1625|2514->1655|2732->1846|2752->1857|2804->1888
-                  LINES: 29->1|57->29|57->29|57->29|61->33|61->33|61->33
+                  HASH: a28791c9a83a0fff876cb247ac673aa82b8e46d4
+                  MATRIX: 807->6|2440->1612|2455->1618|2507->1648|2725->1839|2745->1850|2797->1881|3057->2114|3077->2125|3134->2161|3412->2412|3432->2423|3492->2462
+                  LINES: 29->1|56->28|56->28|56->28|60->32|60->32|60->32|67->39|67->39|67->39|73->45|73->45|73->45
                   -- GENERATED --
               */
           
