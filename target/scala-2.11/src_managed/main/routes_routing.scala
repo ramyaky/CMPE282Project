@@ -1,6 +1,6 @@
 // @SOURCE:/home/ramyaky/Ramya/play-2.2.4/CMPE282Project-master/conf/routes
-// @HASH:bfdfdf581877e6b413c9a038731c7b27fb910c7e
-// @DATE:Tue Mar 10 17:30:24 PDT 2015
+// @HASH:4be9acfca1a2c2917a8296ac0f03a34e0e34779b
+// @DATE:Wed Mar 11 01:05:59 PDT 2015
 
 
 import play.core._
@@ -82,26 +82,33 @@ HandlerDef(this.getClass.getClassLoader, "", "controllers.Application", "login",
         
 
 // @LINE:13
-private[this] lazy val controllers_Application_predictiveAnalysis7_route = Route("POST", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("predictiveanalysis"))))
-private[this] lazy val controllers_Application_predictiveAnalysis7_invoker = createInvoker(
+private[this] lazy val controllers_Application_thirdGraph7_route = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("viewCowDetails/thirdGraph"))))
+private[this] lazy val controllers_Application_thirdGraph7_invoker = createInvoker(
+controllers.Application.thirdGraph(fakeValue[String]),
+HandlerDef(this.getClass.getClassLoader, "", "controllers.Application", "thirdGraph", Seq(classOf[String]),"GET", """""", Routes.prefix + """viewCowDetails/thirdGraph"""))
+        
+
+// @LINE:14
+private[this] lazy val controllers_Application_predictiveAnalysis8_route = Route("POST", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("predictiveanalysis"))))
+private[this] lazy val controllers_Application_predictiveAnalysis8_invoker = createInvoker(
 controllers.Application.predictiveAnalysis(),
 HandlerDef(this.getClass.getClassLoader, "", "controllers.Application", "predictiveAnalysis", Nil,"POST", """""", Routes.prefix + """predictiveanalysis"""))
         
 
-// @LINE:15
-private[this] lazy val controllers_Application_javascriptRoutes8_route = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("assets/javascripts/routes"))))
-private[this] lazy val controllers_Application_javascriptRoutes8_invoker = createInvoker(
+// @LINE:16
+private[this] lazy val controllers_Application_javascriptRoutes9_route = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("assets/javascripts/routes"))))
+private[this] lazy val controllers_Application_javascriptRoutes9_invoker = createInvoker(
 controllers.Application.javascriptRoutes(),
 HandlerDef(this.getClass.getClassLoader, "", "controllers.Application", "javascriptRoutes", Nil,"GET", """ Javascript routing""", Routes.prefix + """assets/javascripts/routes"""))
         
 
-// @LINE:18
-private[this] lazy val controllers_Assets_at9_route = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("assets/"),DynamicPart("file", """.+""",false))))
-private[this] lazy val controllers_Assets_at9_invoker = createInvoker(
+// @LINE:19
+private[this] lazy val controllers_Assets_at10_route = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("assets/"),DynamicPart("file", """.+""",false))))
+private[this] lazy val controllers_Assets_at10_invoker = createInvoker(
 controllers.Assets.at(fakeValue[String], fakeValue[String]),
 HandlerDef(this.getClass.getClassLoader, "", "controllers.Assets", "at", Seq(classOf[String], classOf[String]),"GET", """ Map static resources from the /public folder to the /assets URL path""", Routes.prefix + """assets/$file<.+>"""))
         
-def documentation = List(("""GET""", prefix,"""controllers.Application.index()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """dashboard""","""controllers.Application.dashboard()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """viewCowDetails""","""controllers.Application.viewCowDetails()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """simulation""","""controllers.Application.simulationProcess()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """viewCowDetails/individualCow""","""controllers.Application.viewIndividualCow(cowIdentifier:String)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """viewCowDetails/secondGraph""","""controllers.Application.secondGraph(cowIdentifier:String)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """login""","""controllers.Application.login()"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """predictiveanalysis""","""controllers.Application.predictiveAnalysis()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """assets/javascripts/routes""","""controllers.Application.javascriptRoutes()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """assets/$file<.+>""","""controllers.Assets.at(path:String = "/public", file:String)""")).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
+def documentation = List(("""GET""", prefix,"""controllers.Application.index()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """dashboard""","""controllers.Application.dashboard()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """viewCowDetails""","""controllers.Application.viewCowDetails()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """simulation""","""controllers.Application.simulationProcess()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """viewCowDetails/individualCow""","""controllers.Application.viewIndividualCow(cowIdentifier:String)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """viewCowDetails/secondGraph""","""controllers.Application.secondGraph(cowIdentifier:String)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """login""","""controllers.Application.login()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """viewCowDetails/thirdGraph""","""controllers.Application.thirdGraph(cowIdentifier:String)"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """predictiveanalysis""","""controllers.Application.predictiveAnalysis()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """assets/javascripts/routes""","""controllers.Application.javascriptRoutes()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """assets/$file<.+>""","""controllers.Assets.at(path:String = "/public", file:String)""")).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
   case r @ (_,_,_) => s :+ r.asInstanceOf[(String,String,String)]
   case l => s ++ l.asInstanceOf[List[(String,String,String)]]
 }}
@@ -166,25 +173,33 @@ case controllers_Application_login6_route(params) => {
         
 
 // @LINE:13
-case controllers_Application_predictiveAnalysis7_route(params) => {
-   call { 
-        controllers_Application_predictiveAnalysis7_invoker.call(controllers.Application.predictiveAnalysis())
+case controllers_Application_thirdGraph7_route(params) => {
+   call(params.fromQuery[String]("cowIdentifier", None)) { (cowIdentifier) =>
+        controllers_Application_thirdGraph7_invoker.call(controllers.Application.thirdGraph(cowIdentifier))
    }
 }
         
 
-// @LINE:15
-case controllers_Application_javascriptRoutes8_route(params) => {
+// @LINE:14
+case controllers_Application_predictiveAnalysis8_route(params) => {
    call { 
-        controllers_Application_javascriptRoutes8_invoker.call(controllers.Application.javascriptRoutes())
+        controllers_Application_predictiveAnalysis8_invoker.call(controllers.Application.predictiveAnalysis())
    }
 }
         
 
-// @LINE:18
-case controllers_Assets_at9_route(params) => {
+// @LINE:16
+case controllers_Application_javascriptRoutes9_route(params) => {
+   call { 
+        controllers_Application_javascriptRoutes9_invoker.call(controllers.Application.javascriptRoutes())
+   }
+}
+        
+
+// @LINE:19
+case controllers_Assets_at10_route(params) => {
    call(Param[String]("path", Right("/public")), params.fromPath[String]("file", None)) { (path, file) =>
-        controllers_Assets_at9_invoker.call(controllers.Assets.at(path, file))
+        controllers_Assets_at10_invoker.call(controllers.Assets.at(path, file))
    }
 }
         

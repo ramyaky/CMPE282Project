@@ -1,6 +1,6 @@
 // @SOURCE:/home/ramyaky/Ramya/play-2.2.4/CMPE282Project-master/conf/routes
-// @HASH:bfdfdf581877e6b413c9a038731c7b27fb910c7e
-// @DATE:Tue Mar 10 17:30:24 PDT 2015
+// @HASH:4be9acfca1a2c2917a8296ac0f03a34e0e34779b
+// @DATE:Wed Mar 11 01:05:59 PDT 2015
 
 import Routes.{prefix => _prefix, defaultPrefix => _defaultPrefix}
 import play.core._
@@ -15,8 +15,9 @@ import _root_.play.libs.F
 import Router.queryString
 
 
-// @LINE:18
-// @LINE:15
+// @LINE:19
+// @LINE:16
+// @LINE:14
 // @LINE:13
 // @LINE:12
 // @LINE:11
@@ -27,11 +28,11 @@ import Router.queryString
 // @LINE:6
 package controllers {
 
-// @LINE:18
+// @LINE:19
 class ReverseAssets {
 
 
-// @LINE:18
+// @LINE:19
 def at(file:String): Call = {
    implicit val _rrc = new ReverseRouteContext(Map(("path", "/public")))
    Call("GET", _prefix + { _defaultPrefix } + "assets/" + implicitly[PathBindable[String]].unbind("file", file))
@@ -41,7 +42,8 @@ def at(file:String): Call = {
 }
                           
 
-// @LINE:15
+// @LINE:16
+// @LINE:14
 // @LINE:13
 // @LINE:12
 // @LINE:11
@@ -60,7 +62,7 @@ def simulationProcess(): Call = {
 }
                         
 
-// @LINE:13
+// @LINE:14
 def predictiveAnalysis(): Call = {
    import ReverseRouteContext.empty
    Call("POST", _prefix + { _defaultPrefix } + "predictiveanalysis")
@@ -71,6 +73,13 @@ def predictiveAnalysis(): Call = {
 def viewIndividualCow(cowIdentifier:String): Call = {
    import ReverseRouteContext.empty
    Call("GET", _prefix + { _defaultPrefix } + "viewCowDetails/individualCow" + queryString(List(Some(implicitly[QueryStringBindable[String]].unbind("cowIdentifier", cowIdentifier)))))
+}
+                        
+
+// @LINE:13
+def thirdGraph(cowIdentifier:String): Call = {
+   import ReverseRouteContext.empty
+   Call("GET", _prefix + { _defaultPrefix } + "viewCowDetails/thirdGraph" + queryString(List(Some(implicitly[QueryStringBindable[String]].unbind("cowIdentifier", cowIdentifier)))))
 }
                         
 
@@ -102,7 +111,7 @@ def index(): Call = {
 }
                         
 
-// @LINE:15
+// @LINE:16
 def javascriptRoutes(): Call = {
    import ReverseRouteContext.empty
    Call("GET", _prefix + { _defaultPrefix } + "assets/javascripts/routes")
@@ -122,8 +131,9 @@ def login(): Call = {
                   
 
 
-// @LINE:18
-// @LINE:15
+// @LINE:19
+// @LINE:16
+// @LINE:14
 // @LINE:13
 // @LINE:12
 // @LINE:11
@@ -135,11 +145,11 @@ def login(): Call = {
 package controllers.javascript {
 import ReverseRouteContext.empty
 
-// @LINE:18
+// @LINE:19
 class ReverseAssets {
 
 
-// @LINE:18
+// @LINE:19
 def at : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Assets.at",
    """
@@ -153,7 +163,8 @@ def at : JavascriptReverseRoute = JavascriptReverseRoute(
 }
               
 
-// @LINE:15
+// @LINE:16
+// @LINE:14
 // @LINE:13
 // @LINE:12
 // @LINE:11
@@ -176,7 +187,7 @@ def simulationProcess : JavascriptReverseRoute = JavascriptReverseRoute(
 )
                         
 
-// @LINE:13
+// @LINE:14
 def predictiveAnalysis : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.predictiveAnalysis",
    """
@@ -193,6 +204,17 @@ def viewIndividualCow : JavascriptReverseRoute = JavascriptReverseRoute(
    """
       function(cowIdentifier) {
       return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "viewCowDetails/individualCow" + _qS([(""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("cowIdentifier", cowIdentifier)])})
+      }
+   """
+)
+                        
+
+// @LINE:13
+def thirdGraph : JavascriptReverseRoute = JavascriptReverseRoute(
+   "controllers.Application.thirdGraph",
+   """
+      function(cowIdentifier) {
+      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "viewCowDetails/thirdGraph" + _qS([(""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("cowIdentifier", cowIdentifier)])})
       }
    """
 )
@@ -242,7 +264,7 @@ def index : JavascriptReverseRoute = JavascriptReverseRoute(
 )
                         
 
-// @LINE:15
+// @LINE:16
 def javascriptRoutes : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.javascriptRoutes",
    """
@@ -270,8 +292,9 @@ def login : JavascriptReverseRoute = JavascriptReverseRoute(
         
 
 
-// @LINE:18
-// @LINE:15
+// @LINE:19
+// @LINE:16
+// @LINE:14
 // @LINE:13
 // @LINE:12
 // @LINE:11
@@ -283,11 +306,11 @@ def login : JavascriptReverseRoute = JavascriptReverseRoute(
 package controllers.ref {
 
 
-// @LINE:18
+// @LINE:19
 class ReverseAssets {
 
 
-// @LINE:18
+// @LINE:19
 def at(path:String, file:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Assets.at(path, file), HandlerDef(this.getClass.getClassLoader, "", "controllers.Assets", "at", Seq(classOf[String], classOf[String]), "GET", """ Map static resources from the /public folder to the /assets URL path""", _prefix + """assets/$file<.+>""")
 )
@@ -296,7 +319,8 @@ def at(path:String, file:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.
 }
                           
 
-// @LINE:15
+// @LINE:16
+// @LINE:14
 // @LINE:13
 // @LINE:12
 // @LINE:11
@@ -314,7 +338,7 @@ def simulationProcess(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRe
 )
                       
 
-// @LINE:13
+// @LINE:14
 def predictiveAnalysis(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.predictiveAnalysis(), HandlerDef(this.getClass.getClassLoader, "", "controllers.Application", "predictiveAnalysis", Seq(), "POST", """""", _prefix + """predictiveanalysis""")
 )
@@ -323,6 +347,12 @@ def predictiveAnalysis(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerR
 // @LINE:10
 def viewIndividualCow(cowIdentifier:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.viewIndividualCow(cowIdentifier), HandlerDef(this.getClass.getClassLoader, "", "controllers.Application", "viewIndividualCow", Seq(classOf[String]), "GET", """""", _prefix + """viewCowDetails/individualCow""")
+)
+                      
+
+// @LINE:13
+def thirdGraph(cowIdentifier:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
+   controllers.Application.thirdGraph(cowIdentifier), HandlerDef(this.getClass.getClassLoader, "", "controllers.Application", "thirdGraph", Seq(classOf[String]), "GET", """""", _prefix + """viewCowDetails/thirdGraph""")
 )
                       
 
@@ -350,7 +380,7 @@ def index(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
 )
                       
 
-// @LINE:15
+// @LINE:16
 def javascriptRoutes(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.javascriptRoutes(), HandlerDef(this.getClass.getClassLoader, "", "controllers.Application", "javascriptRoutes", Seq(), "GET", """ Javascript routing""", _prefix + """assets/javascripts/routes""")
 )

@@ -197,7 +197,7 @@ public class Application extends Controller {
 		return ok(
                 play.Routes.javascriptRouter("jsRoutes",
                 controllers.routes.javascript.Application.viewIndividualCow(),
-                controllers.routes.javascript.Application.secondGraph()));
+                controllers.routes.javascript.Application.secondGraph(),controllers.routes.javascript.Application.thirdGraph()));
     }
     public static Result viewCowDetails() throws ParseException {
     	
@@ -219,6 +219,37 @@ public class Application extends Controller {
         return ok(IndividualCow.render(noOfCows));
         
         
+    }
+
+    public static Result thirdGraph(String cowIdentifier) throws ParseException {
+        
+        Parse.initialize("f5GFzmulS2Utcgxct7GSTrxAFqdfftPOx9gkf8l8", "DuuCkneE6gphtMnHWaBd2PoZnQRh7tLys9HQ3hSP");
+        int cowId = Integer.valueOf("1");
+        
+        List<ParseObject> cowDetails = new ArrayList<ParseObject>();
+        List<Map<String, Integer>> recentTemp = new ArrayList<Map<String, Integer>>();
+        
+        
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("MyTestObject");
+
+        query.whereEqualTo("CowID",cowId);
+        query.orderByDescending("createdAt").limit(4);
+        cowDetails = query.find();
+       
+        for(ParseObject cow: cowDetails){
+            double HI = 0.5 * (cow.getInt("AmbientTemp") + 61.0 + ((cow.getInt("AmbientTemp") - 68.0) * 1.2) + (cow.getInt("Humidity") * 0.094));
+            HashMap<String,Integer> recentFourTemperatures = new HashMap<String,Integer>();
+            recentFourTemperatures.put("x", (int)HI);
+            recentFourTemperatures.put("y", cow.getInt("BodyTemp"));
+            recentTemp.add(recentFourTemperatures);
+        }
+        
+        
+        JsonNode JsonNodeRecent = Json.toJson(recentTemp);
+        String tempVsHIResult = Json.stringify(JsonNodeRecent);
+        System.out.println(tempVsHIResult);
+        
+        return ok(tempVsHIResult);
     }
 
     public static Result predictiveAnalysis() throws ParseException {
@@ -334,11 +365,11 @@ public class Application extends Controller {
     public static Result simulationProcess() throws ParseException {
         //Parse.initialize("F9nh7vqHu38Mi3WfxaNfeqfxtyPG0P19iEJ6dbtw", "Gs5FtrAnSiEvRyFd2668vtTNq8AXV9mqdQLXDr7f");
             int count = 0;
-            Double[] timings = {4.0,7.0,10.0,13.0,16.0,19.0};
+            Double[] timings = {4.0,7.0,10.0,13.0};
             ArrayList<Double> myArray = new ArrayList<Double>();
 
             int chanceOfSick=0;
-        while(count < 6) {
+        while(count < 4) {
             double range=1.8;
             int sick=0;
             int cowID=1;
@@ -351,7 +382,6 @@ public class Application extends Controller {
             double expbodytemp=  (((0.238)*heatindex) + 77);
             double randomgen= randDouble(-1.8, 3.0);
              double genbodytemp=expbodytemp + randomgen;
-            if(count < 6 ) {
                 if((genbodytemp-expbodytemp)>range)
                 {
                     sick=1;
@@ -390,11 +420,6 @@ public class Application extends Controller {
                     myArray.add(genbodytemp);
                     count = count + 1;
                 }
-
-            }
-            else {
-                break;
-            }
         }
         System.out.println(myArray);
         return ok(simulate.render(myArray));
@@ -405,4 +430,5 @@ public class Application extends Controller {
         int randomNum = rand.nextInt((max - min) + 1) + min;
         return randomNum;
     }
+
 }

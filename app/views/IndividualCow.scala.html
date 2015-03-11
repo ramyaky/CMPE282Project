@@ -15,7 +15,7 @@
                   <div class="col-lg-12">
                   <script type="text/javascript" src="@routes.Application.javascriptRoutes"></script>                 
                   <p>Please Select Individual Cow to view detailed report</p>
-                  <select class="form-control" id="cowIdentifier" onchange="cowDetails();cowDetails1()">
+                  <select class="form-control" id="cowIdentifier" onchange="cowDetails();cowDetails1();cowDetails2()">
                             <option>-----Select the Cow----</option>
                             @if(noOfCowsInCattle != null){  
                               @for(singlenoOfCowsInCattle <- noOfCowsInCattle) {
@@ -44,6 +44,16 @@
                           </div>
                       </div>
                   </div>
+                  <div class="row mt">
+                      <div class="col-lg-12">
+                          <div class="content-panel">
+                              <h4><i class="fa fa-angle-right"></i> Temperature Vs Heat Index</h4>
+                              <div class="panel-body">
+                                  <div id="chartContainer" class="graph"></div>
+                              </div>
+                          </div>
+                      </div>
+                      </div>
                   <div class="row mt">
                       <div class="col-lg-6">
                           
@@ -121,6 +131,58 @@
               
               
         };
+
+    var cowDetails2 = function() {
+              var cowValue = $('#cowIdentifier').val();
+              jsRoutes.controllers.Application.thirdGraph(cowValue).ajax({
+                    success: function(tempData) {
+                        var tempData2 = JSON.parse(tempData);
+                        var a = tempData2;
+                        
+                         for(var i = 0; i < a.length; i++) {
+                              var b = a[i];
+                              for(var k in b) {
+                                  if(k == "y") {
+                                      b[k] = parseInt(b[k]);
+                                  }
+                                  if(k == "x") {
+                                      b[k] = parseInt(b[k]);
+                                  }
+                              }
+                        } 
+                        var x = [{x:81.056,y:70}, {x:74.83200000000001,y:69}, {x:79.58,y:133}, {x:79.58,y:133}, {x:79.58,y:133}, {x:79.58,y:133}, {x:75.64999999999999,y:68}, {x:79.58,y:133}, {x:79.58,y:133}, {x:79.58,y:133}];
+
+                        var chart = new CanvasJS.Chart("chartContainer",
+                                {
+                                  title:{
+                                  text: "Temperature Vs Heat Index"
+                                  },
+                                  axisX: {
+                                    minimum: 70,
+                                    maximum: 136,
+                                    interval:10
+                                  },
+                                  axisY:{
+                                    includeZero: true
+                                  },
+                                  data: [
+                                  {
+                                    type: "line",
+                                    dataPoints: a
+                                  }
+                                  ]
+                                });
+
+                                chart.render();
+                      $("#result").html(data);
+                    },
+                    error: function() {
+                      alert("Error!")
+                    }
+                  })
+              
+              
+        };    
 
      </script>
 

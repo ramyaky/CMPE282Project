@@ -2,7 +2,7 @@
 
 @import com.google.gson.Gson
 
-@main("Welcome to My Play") {
+@main("Cattle Center Dashboard") {
 
   <section id="container" >
 
@@ -15,7 +15,7 @@
           		<div class="col-lg-10">
                     <label> Click the button to simulate cattle temperature </label>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button id="simulate-button" type="button"> Simulate </button>
+                    <button id="simulate-button" type="button"> Simulate Sick Scenario </button>
                     <br><br>
                     <div id="simulate-data" align="center"> </div>
           		</div>
@@ -52,7 +52,12 @@
              }
             ],
             axisX: {
-                interval: 1
+                interval: 1,
+                suffix: ":00",
+                title: "Sensor reading intervals"
+            },
+            axisY: {
+                title: "Cattle body Temp (F)"
             }
         };
 

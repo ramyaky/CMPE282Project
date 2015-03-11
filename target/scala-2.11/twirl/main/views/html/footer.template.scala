@@ -49,7 +49,7 @@ Seq[Any](format.raw/*1.7*/("""<!--footer start-->
 }
               /*
                   -- GENERATED --
-                  DATE: Tue Mar 10 15:38:00 PDT 2015
+                  DATE: Wed Mar 11 01:06:00 PDT 2015
                   SOURCE: /home/ramyaky/Ramya/play-2.2.4/CMPE282Project-master/app/views/footer.scala.html
                   HASH: 56886fe41ff08efa6e7d572a46c7de28fd62857d
                   MATRIX: 799->6
