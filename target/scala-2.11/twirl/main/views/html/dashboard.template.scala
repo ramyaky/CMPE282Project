@@ -41,7 +41,7 @@ Seq[Any](format.raw/*1.171*/("""
                   <div class="col-lg-9 main-chart">
                   
                   <div class="row mtbox">
-                          <div class="col-md-3 col-sm-3 col-md-offset-1 box0">
+                          <div class="col-md-2 col-sm-2 col-md-offset-1 box0">
                               <div class="box1">
                               <img alt="Relax" src=""""),_display_(/*18.54*/routes/*18.60*/.Assets.at("images/cutie_burned.png")),format.raw/*18.97*/("""" style="width:100px;height:120px;">
                                   <!-- <span class="li_heart"></span> -->
@@ -49,7 +49,7 @@ Seq[Any](format.raw/*1.171*/("""
                               </div>
                                   <p>Number of cows in cattle center as of today</p>
                           </div>
-                          <div class="col-md-2 col-sm-2 box0">
+                          <div class="col-md-3 col-sm-3 box0">
                               <div class="box1">
                               <img alt="weatherImage" id="displayImage" src="" style="width:100px;height:120px;">
                                   <!-- <span class="li_cloud"></span> -->
@@ -102,30 +102,7 @@ Seq[Any](format.raw/*1.171*/("""
                                   <div class="darkblue-header">
                                       <h5>Heat Index: NOAA via Wikipedia</h5>
                                   </div>
-                                <!-- <canvas id="serverstatus02" height="120" width="120"></canvas>
-                                <script>
-                                    var doughnutData = [
-                                            """),format.raw/*80.45*/("""{"""),format.raw/*80.46*/("""
-                                                """),format.raw/*81.49*/("""value: 60,
-                                                color:"#68dff0"
-                                            """),format.raw/*83.45*/("""}"""),format.raw/*83.46*/(""",
-                                            """),format.raw/*84.45*/("""{"""),format.raw/*84.46*/("""
-                                                """),format.raw/*85.49*/("""value : 40,
-                                                color : "#444c57"
-                                            """),format.raw/*87.45*/("""}"""),format.raw/*87.46*/("""
-                                        """),format.raw/*88.41*/("""];
-                                        var myDoughnut = new Chart(document.getElementById("serverstatus02").getContext("2d")).Doughnut(doughnutData);
-                                </script> 
-                                <p>April 17, 2014</p>
-                                <footer>
-                                    <div class="pull-left">
-                                        <h5><i class="fa fa-hdd-o"></i> 17 GB</h5>
-                                    </div>
-                                    <div class="pull-right">
-                                        <h5>60% Used</h5>
-                                    </div>
-                                </footer>-->
-                                <img alt="Relax" src=""""),_display_(/*100.56*/routes/*100.62*/.Assets.at("images/THIndex.png")),format.raw/*100.94*/("""" style="width:300px;height:300px;">
+                                <img alt="Relax" src=""""),_display_(/*77.56*/routes/*77.62*/.Assets.at("images/THIndex.png")),format.raw/*77.94*/("""" style="width:300px;height:300px;">
                               </div>
                         </div><!-- /col-md-4 -->
                         
@@ -137,24 +114,25 @@ Seq[Any](format.raw/*1.171*/("""
                                       <h5>Recent Heat Index</h5>
                                   </div>
                                   <div style="font-size: xx-large;color: #FF865C;padding-top: 100px;">
-                                  """),_display_(/*112.36*/heatIndex),format.raw/*112.45*/("""
-                                  """),format.raw/*113.35*/("""</div>
+                                  """),_display_(/*89.36*/heatIndex),format.raw/*89.45*/("""
+                                  """),format.raw/*90.35*/("""</div>
+                                <button type="button" class="btn btn-theme" onclick="JSONTest();"><i class="fa fa-check"></i> Update Linear Regression</button>
                                 <!-- <canvas id="bar1" height="300" width="300"></canvas>
                                 <script>
-                                var chartvalues = """),_display_(/*116.52*/jsonResult),format.raw/*116.62*/(""";
+                                var chartvalues = """),_display_(/*94.52*/jsonResult),format.raw/*94.62*/(""";
                                 var arr = chartvalues;
                                 var labl = ["Slot1","Slot2","Slot3","Slot4"]
-                                    var barChartData = """),format.raw/*119.56*/("""{"""),format.raw/*119.57*/("""
-                                            """),format.raw/*120.45*/("""labels : labl,
+                                    var barChartData = """),format.raw/*97.56*/("""{"""),format.raw/*97.57*/("""
+                                            """),format.raw/*98.45*/("""labels : labl,
                                             datasets : [
-                                                """),format.raw/*122.49*/("""{"""),format.raw/*122.50*/("""
-                                                    """),format.raw/*123.53*/("""fillColor : "rgba(220,220,220,0.5)",
+                                                """),format.raw/*100.49*/("""{"""),format.raw/*100.50*/("""
+                                                    """),format.raw/*101.53*/("""fillColor : "rgba(220,220,220,0.5)",
                                                     strokeColor : "rgba(220,220,220,1)",
                                                     data : arr
-                                                """),format.raw/*126.49*/("""}"""),format.raw/*126.50*/("""
-                                            """),format.raw/*127.45*/("""]
+                                                """),format.raw/*104.49*/("""}"""),format.raw/*104.50*/("""
+                                            """),format.raw/*105.45*/("""]
 
-                                        """),format.raw/*129.41*/("""}"""),format.raw/*129.42*/(""";
+                                        """),format.raw/*107.41*/("""}"""),format.raw/*107.42*/(""";
                                         var mybar = new Chart(document.getElementById("bar1").getContext("2d")).Bar(barChartData); 
                                     
 
@@ -170,7 +148,7 @@ Seq[Any](format.raw/*1.171*/("""
                                 </div>
                                 <div class="chart mt">
                                 <!-- <iframe src="http://free.timeanddate.com/countdown/i4kqqwpd/n283/cf13/cm0/cu4/ct3/cs0/ca0/co1/cr0/ss0/cacfff/cpcfff/pct/tcfff/fs110/szw448/szh189/tat/tacfff/tpt/tpcfff/iso2015-03-08T00:00:00" allowTransparency="true" frameborder="0" width="230" height="135"></iframe> -->
-                                    <div class="sparkline" data-type="line" data-resize="true" data-height="75" data-width="90%" data-line-width="1" data-line-color="#fff" data-spot-color="#fff" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="4" data-data=""""),_display_(/*145.281*/jsonResult),format.raw/*145.291*/("""">></div>
+                                    <div class="sparkline" data-type="line" data-resize="true" data-height="75" data-width="90%" data-line-width="1" data-line-color="#fff" data-spot-color="#fff" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="4" data-data=""""),_display_(/*123.281*/jsonResult),format.raw/*123.291*/("""">></div>
                                 </div>
                                 <p class="mt"><b>$ 17,980</b><br/>Month Income</p>
                             </div>
@@ -200,23 +178,21 @@ Seq[Any](format.raw/*1.171*/("""
                   <div class="col-lg-3 ds">
                     <!--COMPLETED ACTIONS DONUTS CHART-->
                         <h3>Notifications</h3>
-                                      """),_display_(/*175.40*/if(notify != null)/*175.58*/{_display_(Seq[Any](format.raw/*175.59*/("""  
-                                        """),_display_(/*176.42*/for(singleNotify <- notify) yield /*176.69*/ {_display_(Seq[Any](format.raw/*176.71*/("""
+                                      """),_display_(/*153.40*/if(notify != null)/*153.58*/{_display_(Seq[Any](format.raw/*153.59*/("""  
+                                        """),_display_(/*154.42*/for(singleNotify <- notify) yield /*154.69*/ {_display_(Seq[Any](format.raw/*154.71*/("""
  
-                      """),format.raw/*178.23*/("""<!-- First Action -->
+                      """),format.raw/*156.23*/("""<!-- First Action -->
                       <div class="desc">
                           <div class="thumb">
                               <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
                           </div>
                           <div class="details">
-                              <p><muted>2 Minutes Ago</muted><br/> 
-                                 <a href="#">"""),_display_(/*185.47*/singleNotify),format.raw/*185.59*/("""</a><br/>
-                              </p>
+                                 <a href="#" style="color: #666;">"""),_display_(/*162.68*/singleNotify),format.raw/*162.80*/("""</a><br/>
                           </div>
                       </div>
-                      """)))}),format.raw/*189.24*/("""
-                      """)))}),format.raw/*190.24*/("""
-                     """),format.raw/*191.22*/("""<!--  <!-- Second Action 
+                      """)))}),format.raw/*165.24*/("""
+                      """)))}),format.raw/*166.24*/("""
+                     """),format.raw/*167.22*/("""<!--  <!-- Second Action 
                       <div class="desc">
                           <div class="thumb">
                               <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
@@ -303,62 +279,100 @@ Seq[Any](format.raw/*1.171*/("""
         <!--main content end-->
         <!--footer start-->
 
-"""),_display_(/*278.2*/footer()),format.raw/*278.10*/("""
+"""),_display_(/*254.2*/footer()),format.raw/*254.10*/("""
 
-        """),format.raw/*280.9*/("""<!--footer end-->
+        """),format.raw/*256.9*/("""<!--footer end-->
     </section>
 
+        <script type="text/javascript">  
+        
+         var JSONTest = function() """),format.raw/*261.36*/("""{"""),format.raw/*261.37*/("""
+           """),format.raw/*262.12*/("""// var reqNum = document.getElementById('location').value; 
+          /*  var arr =  $("input[name='check']:checked").map(function()"""),format.raw/*263.73*/("""{"""),format.raw/*263.74*/("""
+                    """),format.raw/*264.21*/("""return this.value;
+                   """),format.raw/*265.20*/("""}"""),format.raw/*265.21*/(""").get()*/
+          //  var data = JSON.stringify(arr);
+            //var url = "http://localhost:9000/compute/AmazonS3/SingleRequests/"+reqNum;
+            var url = "http://localhost:9000/predictiveanalysis";
+             
+            $.ajax("""),format.raw/*270.20*/("""{"""),format.raw/*270.21*/("""
+                """),format.raw/*271.17*/("""url: url,
+                type: 'POST',
+                async: false,
+                success: function (result) """),format.raw/*274.44*/("""{"""),format.raw/*274.45*/("""
+                    """),format.raw/*275.21*/("""alert("Successfully uploaded files. Please check dashboard");
+                    //alert("In success");
+                    //switch (result) """),format.raw/*277.39*/("""{"""),format.raw/*277.40*/("""
+                        """),format.raw/*278.25*/("""//case true:
+                            //processResponse(result);
+                          //break;
+                    //default:
+                      //    resultDiv.html(result);
+                    //"""),format.raw/*283.23*/("""}"""),format.raw/*283.24*/("""
+                """),format.raw/*284.17*/("""}"""),format.raw/*284.18*/(""",
+                error: function (xhr, ajaxOptions, thrownError) """),format.raw/*285.65*/("""{"""),format.raw/*285.66*/("""
+                    """),format.raw/*286.21*/("""alert("Successfully uploaded files. Please check dashboard");
+                    //alert(xhr.status);
+                    //alert(thrownError);
+                """),format.raw/*289.17*/("""}"""),format.raw/*289.18*/("""
+           """),format.raw/*290.12*/("""}"""),format.raw/*290.13*/(""");
+          """),format.raw/*291.11*/("""}"""),format.raw/*291.12*/("""
+
+
+        """),format.raw/*294.9*/("""</script>
+
+
     <script type="application/javascript">
-        $(document).ready(function () """),format.raw/*284.39*/("""{"""),format.raw/*284.40*/("""
-            """),format.raw/*285.13*/("""//$("#date-popover").popover("""),format.raw/*285.42*/("""{"""),format.raw/*285.43*/("""html: true, trigger: "manual""""),format.raw/*285.72*/("""}"""),format.raw/*285.73*/(""");
+        $(document).ready(function () """),format.raw/*298.39*/("""{"""),format.raw/*298.40*/("""
+            """),format.raw/*299.13*/("""//$("#date-popover").popover("""),format.raw/*299.42*/("""{"""),format.raw/*299.43*/("""html: true, trigger: "manual""""),format.raw/*299.72*/("""}"""),format.raw/*299.73*/(""");
             $("#date-popover").hide();
-            $("#date-popover").click(function (e) """),format.raw/*287.51*/("""{"""),format.raw/*287.52*/("""
-                """),format.raw/*288.17*/("""$(this).hide();
-            """),format.raw/*289.13*/("""}"""),format.raw/*289.14*/(""");
+            $("#date-popover").click(function (e) """),format.raw/*301.51*/("""{"""),format.raw/*301.52*/("""
+                """),format.raw/*302.17*/("""$(this).hide();
+            """),format.raw/*303.13*/("""}"""),format.raw/*303.14*/(""");
         
-            $("#my-calendar").zabuto_calendar("""),format.raw/*291.47*/("""{"""),format.raw/*291.48*/("""
-                """),format.raw/*292.17*/("""action: function () """),format.raw/*292.37*/("""{"""),format.raw/*292.38*/("""
-                    """),format.raw/*293.21*/("""return myDateFunction(this.id, false);
-                """),format.raw/*294.17*/("""}"""),format.raw/*294.18*/(""",
-                action_nav: function () """),format.raw/*295.41*/("""{"""),format.raw/*295.42*/("""
-                    """),format.raw/*296.21*/("""return myNavFunction(this.id);
-                """),format.raw/*297.17*/("""}"""),format.raw/*297.18*/(""",
-                ajax: """),format.raw/*298.23*/("""{"""),format.raw/*298.24*/("""
-                    """),format.raw/*299.21*/("""url: "show_data.php?action=1",
+            $("#my-calendar").zabuto_calendar("""),format.raw/*305.47*/("""{"""),format.raw/*305.48*/("""
+                """),format.raw/*306.17*/("""action: function () """),format.raw/*306.37*/("""{"""),format.raw/*306.38*/("""
+                    """),format.raw/*307.21*/("""return myDateFunction(this.id, false);
+                """),format.raw/*308.17*/("""}"""),format.raw/*308.18*/(""",
+                action_nav: function () """),format.raw/*309.41*/("""{"""),format.raw/*309.42*/("""
+                    """),format.raw/*310.21*/("""return myNavFunction(this.id);
+                """),format.raw/*311.17*/("""}"""),format.raw/*311.18*/(""",
+                ajax: """),format.raw/*312.23*/("""{"""),format.raw/*312.24*/("""
+                    """),format.raw/*313.21*/("""url: "show_data.php?action=1",
                     modal: true
-                """),format.raw/*301.17*/("""}"""),format.raw/*301.18*/(""",
+                """),format.raw/*315.17*/("""}"""),format.raw/*315.18*/(""",
                 legend: [
-                    """),format.raw/*303.21*/("""{"""),format.raw/*303.22*/("""type: "text", label: "Special event", badge: "00""""),format.raw/*303.71*/("""}"""),format.raw/*303.72*/(""",
-                    """),format.raw/*304.21*/("""{"""),format.raw/*304.22*/("""type: "block", label: "Regular event", """),format.raw/*304.61*/("""}"""),format.raw/*304.62*/("""
-                """),format.raw/*305.17*/("""]
-            """),format.raw/*306.13*/("""}"""),format.raw/*306.14*/(""");
-        """),format.raw/*307.9*/("""}"""),format.raw/*307.10*/(""");
+                    """),format.raw/*317.21*/("""{"""),format.raw/*317.22*/("""type: "text", label: "Special event", badge: "00""""),format.raw/*317.71*/("""}"""),format.raw/*317.72*/(""",
+                    """),format.raw/*318.21*/("""{"""),format.raw/*318.22*/("""type: "block", label: "Regular event", """),format.raw/*318.61*/("""}"""),format.raw/*318.62*/("""
+                """),format.raw/*319.17*/("""]
+            """),format.raw/*320.13*/("""}"""),format.raw/*320.14*/(""");
+        """),format.raw/*321.9*/("""}"""),format.raw/*321.10*/(""");
         
         
-        function myNavFunction(id) """),format.raw/*310.36*/("""{"""),format.raw/*310.37*/("""
-            """),format.raw/*311.13*/("""$("#date-popover").hide();
+        function myNavFunction(id) """),format.raw/*324.36*/("""{"""),format.raw/*324.37*/("""
+            """),format.raw/*325.13*/("""$("#date-popover").hide();
             var nav = $("#" + id).data("navigation");
             var to = $("#" + id).data("to");
             console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
-        """),format.raw/*315.9*/("""}"""),format.raw/*315.10*/("""
-    """),format.raw/*316.5*/("""</script>
+        """),format.raw/*329.9*/("""}"""),format.raw/*329.10*/("""
+    """),format.raw/*330.5*/("""</script>
 
     <script>
 
-        var x = """),_display_(/*320.18*/Html(myjsonResult)),format.raw/*320.36*/(""";
+        var x = """),_display_(/*334.18*/Html(myjsonResult)),format.raw/*334.36*/(""";
         
-        for(var i = 0; i < x.length; i++) """),format.raw/*322.43*/("""{"""),format.raw/*322.44*/("""
-              """),format.raw/*323.15*/("""var y = x[i];
-              for(var k in y) """),format.raw/*324.31*/("""{"""),format.raw/*324.32*/("""
-                  """),format.raw/*325.19*/("""if(k == "temperature") """),format.raw/*325.42*/("""{"""),format.raw/*325.43*/("""
-                      """),format.raw/*326.23*/("""y[k] = parseInt(y[k]);
-                  """),format.raw/*327.19*/("""}"""),format.raw/*327.20*/("""
-              """),format.raw/*328.15*/("""}"""),format.raw/*328.16*/("""
-        """),format.raw/*329.9*/("""}"""),format.raw/*329.10*/("""
-        """),format.raw/*330.9*/("""//var mapValues=["""),format.raw/*330.26*/("""{"""),format.raw/*330.27*/("""cow: 'cow1', temperature: 30"""),format.raw/*330.55*/("""}"""),format.raw/*330.56*/(""","""),format.raw/*330.57*/("""{"""),format.raw/*330.58*/("""cow: 'cow2', temperature: 32"""),format.raw/*330.86*/("""}"""),format.raw/*330.87*/(""","""),format.raw/*330.88*/("""{"""),format.raw/*330.89*/("""cow: 'cow3', temperature: 38"""),format.raw/*330.117*/("""}"""),format.raw/*330.118*/(""","""),format.raw/*330.119*/("""{"""),format.raw/*330.120*/("""cow: 'cow4', temperature: 40"""),format.raw/*330.148*/("""}"""),format.raw/*330.149*/(""","""),format.raw/*330.150*/("""{"""),format.raw/*330.151*/("""cow: 'cow5', temperature: 42"""),format.raw/*330.179*/("""}"""),format.raw/*330.180*/(""","""),format.raw/*330.181*/("""{"""),format.raw/*330.182*/("""cow: 'cow6', temperature: 34"""),format.raw/*330.210*/("""}"""),format.raw/*330.211*/("""];
+        for(var i = 0; i < x.length; i++) """),format.raw/*336.43*/("""{"""),format.raw/*336.44*/("""
+              """),format.raw/*337.15*/("""var y = x[i];
+              for(var k in y) """),format.raw/*338.31*/("""{"""),format.raw/*338.32*/("""
+                  """),format.raw/*339.19*/("""if(k == "temperature") """),format.raw/*339.42*/("""{"""),format.raw/*339.43*/("""
+                      """),format.raw/*340.23*/("""y[k] = parseInt(y[k]);
+                  """),format.raw/*341.19*/("""}"""),format.raw/*341.20*/("""
+              """),format.raw/*342.15*/("""}"""),format.raw/*342.16*/("""
+        """),format.raw/*343.9*/("""}"""),format.raw/*343.10*/("""
+        """),format.raw/*344.9*/("""//var mapValues=["""),format.raw/*344.26*/("""{"""),format.raw/*344.27*/("""cow: 'cow1', temperature: 30"""),format.raw/*344.55*/("""}"""),format.raw/*344.56*/(""","""),format.raw/*344.57*/("""{"""),format.raw/*344.58*/("""cow: 'cow2', temperature: 32"""),format.raw/*344.86*/("""}"""),format.raw/*344.87*/(""","""),format.raw/*344.88*/("""{"""),format.raw/*344.89*/("""cow: 'cow3', temperature: 38"""),format.raw/*344.117*/("""}"""),format.raw/*344.118*/(""","""),format.raw/*344.119*/("""{"""),format.raw/*344.120*/("""cow: 'cow4', temperature: 40"""),format.raw/*344.148*/("""}"""),format.raw/*344.149*/(""","""),format.raw/*344.150*/("""{"""),format.raw/*344.151*/("""cow: 'cow5', temperature: 42"""),format.raw/*344.179*/("""}"""),format.raw/*344.180*/(""","""),format.raw/*344.181*/("""{"""),format.raw/*344.182*/("""cow: 'cow6', temperature: 34"""),format.raw/*344.210*/("""}"""),format.raw/*344.211*/("""];
         
-        Morris.Bar("""),format.raw/*332.20*/("""{"""),format.raw/*332.21*/("""
-            """),format.raw/*333.13*/("""element: 'bar-example',
+        Morris.Bar("""),format.raw/*346.20*/("""{"""),format.raw/*346.21*/("""
+            """),format.raw/*347.13*/("""element: 'bar-example',
             data: x,
             xkey: 'cow',
             ykeys: ['temperature'],
@@ -367,11 +381,11 @@ Seq[Any](format.raw/*1.171*/("""
             xLabelAngle: 35,
             hideHover: 'auto',
             barColors: ['#FF865C',]
-            """),format.raw/*342.13*/("""}"""),format.raw/*342.14*/(""");
+            """),format.raw/*356.13*/("""}"""),format.raw/*356.14*/(""");
 
     </script> 
 
-""")))}),format.raw/*346.2*/("""
+""")))}),format.raw/*360.2*/("""
 """))}
   }
 
@@ -384,11 +398,11 @@ Seq[Any](format.raw/*1.171*/("""
 }
               /*
                   -- GENERATED --
-                  DATE: Tue Mar 10 16:16:24 PDT 2015
+                  DATE: Tue Mar 10 22:49:32 PDT 2015
                   SOURCE: /home/ramyaky/Ramya/play-2.2.4/CMPE282Project-master/app/views/dashboard.scala.html
-                  HASH: 42d2334697ecbc1eab426c4a7c8f791a5401c10a
-                  MATRIX: 782->1|1040->170|1068->173|1107->204|1146->206|1178->212|1230->239|1266->255|1294->257|1712->648|1727->654|1785->691|1962->841|1999->857|3213->2044|3228->2050|3280->2081|3456->2230|3489->2242|3706->2432|3741->2458|3780->2459|3835->2486|4001->2625|4016->2631|4070->2664|4315->2882|4344->2890|4550->3077|4563->3081|4602->3082|4657->3109|4823->3248|4838->3254|4896->3291|5108->3476|5137->3484|5361->3677|5435->3723|6180->4440|6209->4441|6286->4490|6433->4609|6462->4610|6536->4656|6565->4657|6642->4706|6792->4828|6821->4829|6890->4870|7658->5610|7674->5616|7728->5648|8420->6312|8451->6321|8515->6356|8732->6545|8764->6555|8982->6744|9012->6745|9086->6790|9235->6910|9265->6911|9347->6964|9613->7201|9643->7202|9717->7247|9789->7290|9819->7291|11165->8608|11198->8618|12720->10112|12748->10130|12788->10131|12860->10175|12904->10202|12945->10204|12999->10229|13427->10629|13461->10641|13623->10771|13679->10795|13730->10817|17959->15019|17989->15027|18027->15037|18171->15152|18201->15153|18243->15166|18301->15195|18331->15196|18389->15225|18419->15226|18540->15318|18570->15319|18616->15336|18673->15364|18703->15365|18790->15423|18820->15424|18866->15441|18915->15461|18945->15462|18995->15483|19079->15538|19109->15539|19180->15581|19210->15582|19260->15603|19336->15650|19366->15651|19419->15675|19449->15676|19499->15697|19607->15776|19637->15777|19714->15825|19744->15826|19822->15875|19852->15876|19903->15898|19933->15899|20001->15938|20031->15939|20077->15956|20120->15970|20150->15971|20189->15982|20219->15983|20304->16039|20334->16040|20376->16053|20614->16263|20644->16264|20677->16269|20747->16311|20787->16329|20869->16382|20899->16383|20943->16398|21016->16442|21046->16443|21094->16462|21146->16485|21176->16486|21228->16509|21298->16550|21328->16551|21372->16566|21402->16567|21439->16576|21469->16577|21506->16586|21552->16603|21582->16604|21639->16632|21669->16633|21699->16634|21729->16635|21786->16663|21816->16664|21846->16665|21876->16666|21934->16694|21965->16695|21996->16696|22027->16697|22085->16725|22116->16726|22147->16727|22178->16728|22236->16756|22267->16757|22298->16758|22329->16759|22387->16787|22418->16788|22478->16819|22508->16820|22550->16833|22857->17111|22887->17112|22939->17133
-                  LINES: 26->1|29->1|31->3|31->3|31->3|33->5|35->7|35->7|37->9|46->18|46->18|46->18|48->20|48->20|69->41|69->41|69->41|71->43|71->43|75->47|75->47|75->47|76->48|78->50|78->50|78->50|80->52|80->52|84->56|84->56|84->56|85->57|87->59|87->59|87->59|89->61|89->61|93->65|95->67|108->80|108->80|109->81|111->83|111->83|112->84|112->84|113->85|115->87|115->87|116->88|128->100|128->100|128->100|140->112|140->112|141->113|144->116|144->116|147->119|147->119|148->120|150->122|150->122|151->123|154->126|154->126|155->127|157->129|157->129|173->145|173->145|203->175|203->175|203->175|204->176|204->176|204->176|206->178|213->185|213->185|217->189|218->190|219->191|306->278|306->278|308->280|312->284|312->284|313->285|313->285|313->285|313->285|313->285|315->287|315->287|316->288|317->289|317->289|319->291|319->291|320->292|320->292|320->292|321->293|322->294|322->294|323->295|323->295|324->296|325->297|325->297|326->298|326->298|327->299|329->301|329->301|331->303|331->303|331->303|331->303|332->304|332->304|332->304|332->304|333->305|334->306|334->306|335->307|335->307|338->310|338->310|339->311|343->315|343->315|344->316|348->320|348->320|350->322|350->322|351->323|352->324|352->324|353->325|353->325|353->325|354->326|355->327|355->327|356->328|356->328|357->329|357->329|358->330|358->330|358->330|358->330|358->330|358->330|358->330|358->330|358->330|358->330|358->330|358->330|358->330|358->330|358->330|358->330|358->330|358->330|358->330|358->330|358->330|358->330|358->330|358->330|358->330|360->332|360->332|361->333|370->342|370->342|374->346
+                  HASH: 16c8353946e624d0a5351bbf7c8c0751c0c39671
+                  MATRIX: 782->1|1040->170|1068->173|1107->204|1146->206|1178->212|1230->239|1266->255|1294->257|1712->648|1727->654|1785->691|1962->841|1999->857|3213->2044|3228->2050|3280->2081|3456->2230|3489->2242|3706->2432|3741->2458|3780->2459|3835->2486|4001->2625|4016->2631|4070->2664|4315->2882|4344->2890|4550->3077|4563->3081|4602->3082|4657->3109|4823->3248|4838->3254|4896->3291|5108->3476|5137->3484|5361->3677|5435->3723|5992->4253|6007->4259|6060->4291|6751->4955|6781->4964|6844->4999|7220->5348|7251->5358|7468->5547|7497->5548|7570->5593|7719->5713|7749->5714|7831->5767|8097->6004|8127->6005|8201->6050|8273->6093|8303->6094|9649->7411|9682->7421|11204->8915|11232->8933|11272->8934|11344->8978|11388->9005|11429->9007|11483->9032|11864->9385|11898->9397|12025->9492|12081->9516|12132->9538|16361->13740|16391->13748|16429->13758|16578->13878|16608->13879|16649->13891|16810->14023|16840->14024|16890->14045|16957->14083|16987->14084|17260->14328|17290->14329|17336->14346|17478->14459|17508->14460|17558->14481|17730->14624|17760->14625|17814->14650|18051->14858|18081->14859|18127->14876|18157->14877|18252->14943|18282->14944|18332->14965|18522->15126|18552->15127|18593->15139|18623->15140|18665->15153|18695->15154|18734->15165|18856->15258|18886->15259|18928->15272|18986->15301|19016->15302|19074->15331|19104->15332|19225->15424|19255->15425|19301->15442|19358->15470|19388->15471|19475->15529|19505->15530|19551->15547|19600->15567|19630->15568|19680->15589|19764->15644|19794->15645|19865->15687|19895->15688|19945->15709|20021->15756|20051->15757|20104->15781|20134->15782|20184->15803|20292->15882|20322->15883|20399->15931|20429->15932|20507->15981|20537->15982|20588->16004|20618->16005|20686->16044|20716->16045|20762->16062|20805->16076|20835->16077|20874->16088|20904->16089|20989->16145|21019->16146|21061->16159|21299->16369|21329->16370|21362->16375|21432->16417|21472->16435|21554->16488|21584->16489|21628->16504|21701->16548|21731->16549|21779->16568|21831->16591|21861->16592|21913->16615|21983->16656|22013->16657|22057->16672|22087->16673|22124->16682|22154->16683|22191->16692|22237->16709|22267->16710|22324->16738|22354->16739|22384->16740|22414->16741|22471->16769|22501->16770|22531->16771|22561->16772|22619->16800|22650->16801|22681->16802|22712->16803|22770->16831|22801->16832|22832->16833|22863->16834|22921->16862|22952->16863|22983->16864|23014->16865|23072->16893|23103->16894|23163->16925|23193->16926|23235->16939|23542->17217|23572->17218|23624->17239
+                  LINES: 26->1|29->1|31->3|31->3|31->3|33->5|35->7|35->7|37->9|46->18|46->18|46->18|48->20|48->20|69->41|69->41|69->41|71->43|71->43|75->47|75->47|75->47|76->48|78->50|78->50|78->50|80->52|80->52|84->56|84->56|84->56|85->57|87->59|87->59|87->59|89->61|89->61|93->65|95->67|105->77|105->77|105->77|117->89|117->89|118->90|122->94|122->94|125->97|125->97|126->98|128->100|128->100|129->101|132->104|132->104|133->105|135->107|135->107|151->123|151->123|181->153|181->153|181->153|182->154|182->154|182->154|184->156|190->162|190->162|193->165|194->166|195->167|282->254|282->254|284->256|289->261|289->261|290->262|291->263|291->263|292->264|293->265|293->265|298->270|298->270|299->271|302->274|302->274|303->275|305->277|305->277|306->278|311->283|311->283|312->284|312->284|313->285|313->285|314->286|317->289|317->289|318->290|318->290|319->291|319->291|322->294|326->298|326->298|327->299|327->299|327->299|327->299|327->299|329->301|329->301|330->302|331->303|331->303|333->305|333->305|334->306|334->306|334->306|335->307|336->308|336->308|337->309|337->309|338->310|339->311|339->311|340->312|340->312|341->313|343->315|343->315|345->317|345->317|345->317|345->317|346->318|346->318|346->318|346->318|347->319|348->320|348->320|349->321|349->321|352->324|352->324|353->325|357->329|357->329|358->330|362->334|362->334|364->336|364->336|365->337|366->338|366->338|367->339|367->339|367->339|368->340|369->341|369->341|370->342|370->342|371->343|371->343|372->344|372->344|372->344|372->344|372->344|372->344|372->344|372->344|372->344|372->344|372->344|372->344|372->344|372->344|372->344|372->344|372->344|372->344|372->344|372->344|372->344|372->344|372->344|372->344|372->344|374->346|374->346|375->347|384->356|384->356|388->360
                   -- GENERATED --
               */
           

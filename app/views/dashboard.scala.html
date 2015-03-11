@@ -13,7 +13,7 @@
                   <div class="col-lg-9 main-chart">
                   
                   <div class="row mtbox">
-                          <div class="col-md-3 col-sm-3 col-md-offset-1 box0">
+                          <div class="col-md-2 col-sm-2 col-md-offset-1 box0">
                               <div class="box1">
                               <img alt="Relax" src="@routes.Assets.at("images/cutie_burned.png")" style="width:100px;height:120px;">
                                   <!-- <span class="li_heart"></span> -->
@@ -21,7 +21,7 @@
                               </div>
                                   <p>Number of cows in cattle center as of today</p>
                           </div>
-                          <div class="col-md-2 col-sm-2 box0">
+                          <div class="col-md-3 col-sm-3 box0">
                               <div class="box1">
                               <img alt="weatherImage" id="displayImage" src="" style="width:100px;height:120px;">
                                   <!-- <span class="li_cloud"></span> -->
@@ -74,29 +74,6 @@
                                   <div class="darkblue-header">
                                       <h5>Heat Index: NOAA via Wikipedia</h5>
                                   </div>
-                                <!-- <canvas id="serverstatus02" height="120" width="120"></canvas>
-                                <script>
-                                    var doughnutData = [
-                                            {
-                                                value: 60,
-                                                color:"#68dff0"
-                                            },
-                                            {
-                                                value : 40,
-                                                color : "#444c57"
-                                            }
-                                        ];
-                                        var myDoughnut = new Chart(document.getElementById("serverstatus02").getContext("2d")).Doughnut(doughnutData);
-                                </script> 
-                                <p>April 17, 2014</p>
-                                <footer>
-                                    <div class="pull-left">
-                                        <h5><i class="fa fa-hdd-o"></i> 17 GB</h5>
-                                    </div>
-                                    <div class="pull-right">
-                                        <h5>60% Used</h5>
-                                    </div>
-                                </footer>-->
                                 <img alt="Relax" src="@routes.Assets.at("images/THIndex.png")" style="width:300px;height:300px;">
                               </div>
                         </div><!-- /col-md-4 -->
@@ -111,6 +88,7 @@
                                   <div style="font-size: xx-large;color: #FF865C;padding-top: 100px;">
                                   @heatIndex
                                   </div>
+                                <button type="button" class="btn btn-theme" onclick="JSONTest();"><i class="fa fa-check"></i> Update Linear Regression</button>
                                 <!-- <canvas id="bar1" height="300" width="300"></canvas>
                                 <script>
                                 var chartvalues = @jsonResult;
@@ -181,9 +159,7 @@
                               <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
                           </div>
                           <div class="details">
-                              <p><muted>2 Minutes Ago</muted><br/> 
-                                 <a href="#">@singleNotify</a><br/>
-                              </p>
+                                 <a href="#" style="color: #666;">@singleNotify</a><br/>
                           </div>
                       </div>
                       }
@@ -279,6 +255,44 @@
 
         <!--footer end-->
     </section>
+
+        <script type="text/javascript">  
+        
+         var JSONTest = function() {
+           // var reqNum = document.getElementById('location').value; 
+          /*  var arr =  $("input[name='check']:checked").map(function(){
+                    return this.value;
+                   }).get()*/
+          //  var data = JSON.stringify(arr);
+            //var url = "http://localhost:9000/compute/AmazonS3/SingleRequests/"+reqNum;
+            var url = "http://localhost:9000/predictiveanalysis";
+             
+            $.ajax({
+                url: url,
+                type: 'POST',
+                async: false,
+                success: function (result) {
+                    alert("Successfully uploaded files. Please check dashboard");
+                    //alert("In success");
+                    //switch (result) {
+                        //case true:
+                            //processResponse(result);
+                          //break;
+                    //default:
+                      //    resultDiv.html(result);
+                    //}
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert("Successfully uploaded files. Please check dashboard");
+                    //alert(xhr.status);
+                    //alert(thrownError);
+                }
+           });
+          }
+
+
+        </script>
+
 
     <script type="application/javascript">
         $(document).ready(function () {

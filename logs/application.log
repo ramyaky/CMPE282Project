@@ -1,9 +1,15 @@
-2015-03-10 16:12:34,161 - [INFO] - from play in pool-4-thread-2 
+2015-03-10 22:48:54,352 - [INFO] - from play in pool-4-thread-3 
 Listening for HTTP on /0:0:0:0:0:0:0:0:9000
 
-2015-03-10 16:12:45,721 - [INFO] - from play in play-internal-execution-context-1 
+2015-03-10 22:49:03,818 - [INFO] - from play in play-internal-execution-context-1 
 Application started (Dev)
 
-2015-03-10 16:16:26,621 - [INFO] - from play in play-internal-execution-context-1 
+2015-03-10 22:49:34,089 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+
+2015-03-10 22:49:55,131 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+
+2015-03-10 22:50:17,360 - [INFO] - from play in play-internal-execution-context-3 
 Application started (Dev)
 

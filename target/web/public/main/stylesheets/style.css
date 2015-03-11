@@ -1927,7 +1927,7 @@ label {
 .form-login {
 	max-width: 330px;
 	margin: 100px auto 0;
-	background: #fff;
+	background: #58726D;
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
 }
@@ -1936,7 +1936,7 @@ label {
 	margin: 0;
 	padding: 25px 20px;
 	text-align: center;
-	background: #68dff0;
+	background: #58726D;
 	border-radius: 5px 5px 0 0;
 	-webkit-border-radius: 5px 5px 0 0;
 	color: #fff;

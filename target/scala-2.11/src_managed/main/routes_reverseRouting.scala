@@ -1,6 +1,6 @@
 // @SOURCE:/home/ramyaky/Ramya/play-2.2.4/CMPE282Project-master/conf/routes
-// @HASH:10e4af0bd031eaa6e79d2d59a7ae7abbd8e95080
-// @DATE:Tue Mar 10 15:37:59 PDT 2015
+// @HASH:bfdfdf581877e6b413c9a038731c7b27fb910c7e
+// @DATE:Tue Mar 10 17:30:24 PDT 2015
 
 import Routes.{prefix => _prefix, defaultPrefix => _defaultPrefix}
 import play.core._
@@ -15,8 +15,10 @@ import _root_.play.libs.F
 import Router.queryString
 
 
-// @LINE:16
+// @LINE:18
+// @LINE:15
 // @LINE:13
+// @LINE:12
 // @LINE:11
 // @LINE:10
 // @LINE:9
@@ -25,11 +27,11 @@ import Router.queryString
 // @LINE:6
 package controllers {
 
-// @LINE:16
+// @LINE:18
 class ReverseAssets {
 
 
-// @LINE:16
+// @LINE:18
 def at(file:String): Call = {
    implicit val _rrc = new ReverseRouteContext(Map(("path", "/public")))
    Call("GET", _prefix + { _defaultPrefix } + "assets/" + implicitly[PathBindable[String]].unbind("file", file))
@@ -39,7 +41,9 @@ def at(file:String): Call = {
 }
                           
 
+// @LINE:15
 // @LINE:13
+// @LINE:12
 // @LINE:11
 // @LINE:10
 // @LINE:9
@@ -53,6 +57,13 @@ class ReverseApplication {
 def simulationProcess(): Call = {
    import ReverseRouteContext.empty
    Call("GET", _prefix + { _defaultPrefix } + "simulation")
+}
+                        
+
+// @LINE:13
+def predictiveAnalysis(): Call = {
+   import ReverseRouteContext.empty
+   Call("POST", _prefix + { _defaultPrefix } + "predictiveanalysis")
 }
                         
 
@@ -91,10 +102,17 @@ def index(): Call = {
 }
                         
 
-// @LINE:13
+// @LINE:15
 def javascriptRoutes(): Call = {
    import ReverseRouteContext.empty
    Call("GET", _prefix + { _defaultPrefix } + "assets/javascripts/routes")
+}
+                        
+
+// @LINE:12
+def login(): Call = {
+   import ReverseRouteContext.empty
+   Call("GET", _prefix + { _defaultPrefix } + "login")
 }
                         
 
@@ -104,8 +122,10 @@ def javascriptRoutes(): Call = {
                   
 
 
-// @LINE:16
+// @LINE:18
+// @LINE:15
 // @LINE:13
+// @LINE:12
 // @LINE:11
 // @LINE:10
 // @LINE:9
@@ -115,11 +135,11 @@ def javascriptRoutes(): Call = {
 package controllers.javascript {
 import ReverseRouteContext.empty
 
-// @LINE:16
+// @LINE:18
 class ReverseAssets {
 
 
-// @LINE:16
+// @LINE:18
 def at : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Assets.at",
    """
@@ -133,7 +153,9 @@ def at : JavascriptReverseRoute = JavascriptReverseRoute(
 }
               
 
+// @LINE:15
 // @LINE:13
+// @LINE:12
 // @LINE:11
 // @LINE:10
 // @LINE:9
@@ -149,6 +171,17 @@ def simulationProcess : JavascriptReverseRoute = JavascriptReverseRoute(
    """
       function() {
       return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "simulation"})
+      }
+   """
+)
+                        
+
+// @LINE:13
+def predictiveAnalysis : JavascriptReverseRoute = JavascriptReverseRoute(
+   "controllers.Application.predictiveAnalysis",
+   """
+      function() {
+      return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "predictiveanalysis"})
       }
    """
 )
@@ -209,12 +242,23 @@ def index : JavascriptReverseRoute = JavascriptReverseRoute(
 )
                         
 
-// @LINE:13
+// @LINE:15
 def javascriptRoutes : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.javascriptRoutes",
    """
       function() {
       return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "assets/javascripts/routes"})
+      }
+   """
+)
+                        
+
+// @LINE:12
+def login : JavascriptReverseRoute = JavascriptReverseRoute(
+   "controllers.Application.login",
+   """
+      function() {
+      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "login"})
       }
    """
 )
@@ -226,8 +270,10 @@ def javascriptRoutes : JavascriptReverseRoute = JavascriptReverseRoute(
         
 
 
-// @LINE:16
+// @LINE:18
+// @LINE:15
 // @LINE:13
+// @LINE:12
 // @LINE:11
 // @LINE:10
 // @LINE:9
@@ -237,11 +283,11 @@ def javascriptRoutes : JavascriptReverseRoute = JavascriptReverseRoute(
 package controllers.ref {
 
 
-// @LINE:16
+// @LINE:18
 class ReverseAssets {
 
 
-// @LINE:16
+// @LINE:18
 def at(path:String, file:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Assets.at(path, file), HandlerDef(this.getClass.getClassLoader, "", "controllers.Assets", "at", Seq(classOf[String], classOf[String]), "GET", """ Map static resources from the /public folder to the /assets URL path""", _prefix + """assets/$file<.+>""")
 )
@@ -250,7 +296,9 @@ def at(path:String, file:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.
 }
                           
 
+// @LINE:15
 // @LINE:13
+// @LINE:12
 // @LINE:11
 // @LINE:10
 // @LINE:9
@@ -263,6 +311,12 @@ class ReverseApplication {
 // @LINE:9
 def simulationProcess(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.simulationProcess(), HandlerDef(this.getClass.getClassLoader, "", "controllers.Application", "simulationProcess", Seq(), "GET", """""", _prefix + """simulation""")
+)
+                      
+
+// @LINE:13
+def predictiveAnalysis(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
+   controllers.Application.predictiveAnalysis(), HandlerDef(this.getClass.getClassLoader, "", "controllers.Application", "predictiveAnalysis", Seq(), "POST", """""", _prefix + """predictiveanalysis""")
 )
                       
 
@@ -296,9 +350,15 @@ def index(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
 )
                       
 
-// @LINE:13
+// @LINE:15
 def javascriptRoutes(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.javascriptRoutes(), HandlerDef(this.getClass.getClassLoader, "", "controllers.Application", "javascriptRoutes", Seq(), "GET", """ Javascript routing""", _prefix + """assets/javascripts/routes""")
+)
+                      
+
+// @LINE:12
+def login(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
+   controllers.Application.login(), HandlerDef(this.getClass.getClassLoader, "", "controllers.Application", "login", Seq(), "GET", """""", _prefix + """login""")
 )
                       
 

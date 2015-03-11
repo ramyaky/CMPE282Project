@@ -56,6 +56,8 @@ Seq[Any](format.raw/*1.32*/("""
         <script src=""""),_display_(/*28.23*/routes/*28.29*/.Assets.at("javascripts/weather.js")),format.raw/*28.65*/(""""></script>        
         <script src=""""),_display_(/*29.23*/routes/*29.29*/.Assets.at("javascripts/jquery-1.9.0.min.js")),format.raw/*29.74*/("""" type="text/javascript"></script>
         <script src=""""),_display_(/*30.23*/routes/*30.29*/.Assets.at("javascripts/chart-master/Chart.js")),format.raw/*30.76*/(""""></script>
+        <script src=""""),_display_(/*31.23*/routes/*31.29*/.Assets.at("javascripts/raphael-min.js")),format.raw/*31.69*/(""""></script>
+        <script src=""""),_display_(/*32.23*/routes/*32.29*/.Assets.at("javascripts/morris.min.js")),format.raw/*32.68*/(""""></script>
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -63,31 +65,29 @@ Seq[Any](format.raw/*1.32*/("""
         <![endif]-->
     </head>
     <body onload="getCurrentWeather();">
-        """),_display_(/*38.10*/content),format.raw/*38.17*/("""
-    """),format.raw/*39.5*/("""</body>
+        """),_display_(/*40.10*/content),format.raw/*40.17*/("""
+    """),format.raw/*41.5*/("""</body>
 
-        <!--<script src=""""),_display_(/*41.27*/routes/*41.33*/.Assets.at("javascripts/jquery.js")),format.raw/*41.68*/(""""></script>
-        <script src=""""),_display_(/*42.23*/routes/*42.29*/.Assets.at("javascripts/jquery-1.8.3.min.js")),format.raw/*42.74*/(""""></script> -->
-        <script src=""""),_display_(/*43.23*/routes/*43.29*/.Assets.at("javascripts/bootstrap.min.js")),format.raw/*43.71*/(""""></script>
-        <script class="include" type="text/javascript" src=""""),_display_(/*44.62*/routes/*44.68*/.Assets.at("javascripts/jquery.dcjqaccordion.2.7.js")),format.raw/*44.121*/(""""></script>
-        <script src=""""),_display_(/*45.23*/routes/*45.29*/.Assets.at("javascripts/jquery.scrollTo.min.js")),format.raw/*45.77*/(""""></script>
-        <script src=""""),_display_(/*46.23*/routes/*46.29*/.Assets.at("javascripts/jquery.nicescroll.js")),format.raw/*46.75*/("""" type="text/javascript"></script>
-        <script src=""""),_display_(/*47.23*/routes/*47.29*/.Assets.at("javascripts/jquery.sparkline.js")),format.raw/*47.74*/(""""></script>
+        <!--<script src=""""),_display_(/*43.27*/routes/*43.33*/.Assets.at("javascripts/jquery.js")),format.raw/*43.68*/(""""></script>
+        <script src=""""),_display_(/*44.23*/routes/*44.29*/.Assets.at("javascripts/jquery-1.8.3.min.js")),format.raw/*44.74*/(""""></script> -->
+        <script src=""""),_display_(/*45.23*/routes/*45.29*/.Assets.at("javascripts/bootstrap.min.js")),format.raw/*45.71*/(""""></script>
+        <script class="include" type="text/javascript" src=""""),_display_(/*46.62*/routes/*46.68*/.Assets.at("javascripts/jquery.dcjqaccordion.2.7.js")),format.raw/*46.121*/(""""></script>
+        <script src=""""),_display_(/*47.23*/routes/*47.29*/.Assets.at("javascripts/jquery.scrollTo.min.js")),format.raw/*47.77*/(""""></script>
+        <script src=""""),_display_(/*48.23*/routes/*48.29*/.Assets.at("javascripts/jquery.nicescroll.js")),format.raw/*48.75*/("""" type="text/javascript"></script>
+        <script src=""""),_display_(/*49.23*/routes/*49.29*/.Assets.at("javascripts/jquery.sparkline.js")),format.raw/*49.74*/(""""></script>
 
 
         <!--common script for all pages-->
-        <script src=""""),_display_(/*51.23*/routes/*51.29*/.Assets.at("javascripts/common-scripts.js")),format.raw/*51.72*/(""""></script>
+        <script src=""""),_display_(/*53.23*/routes/*53.29*/.Assets.at("javascripts/common-scripts.js")),format.raw/*53.72*/(""""></script>
     
-        <script type="text/javascript" src=""""),_display_(/*53.46*/routes/*53.52*/.Assets.at("javascripts/gritter/js/jquery.gritter.js")),format.raw/*53.106*/(""""></script>
-        <script type="text/javascript" src=""""),_display_(/*54.46*/routes/*54.52*/.Assets.at("javascripts/gritter-conf.js")),format.raw/*54.93*/(""""></script>
+        <script type="text/javascript" src=""""),_display_(/*55.46*/routes/*55.52*/.Assets.at("javascripts/gritter/js/jquery.gritter.js")),format.raw/*55.106*/(""""></script>
+        <script type="text/javascript" src=""""),_display_(/*56.46*/routes/*56.52*/.Assets.at("javascripts/gritter-conf.js")),format.raw/*56.93*/(""""></script>
 
         <!--script for this page-->
-        <script src=""""),_display_(/*57.23*/routes/*57.29*/.Assets.at("javascripts/sparkline-chart.js")),format.raw/*57.73*/(""""></script>    
-        <script src=""""),_display_(/*58.23*/routes/*58.29*/.Assets.at("javascripts/zabuto_calendar.js")),format.raw/*58.73*/(""""></script>
-        <script src=""""),_display_(/*59.23*/routes/*59.29*/.Assets.at("javascripts/jquery-ui-1.9.2.custom.min.js")),format.raw/*59.84*/(""""></script>
-        <script src=""""),_display_(/*60.23*/routes/*60.29*/.Assets.at("javascripts/jquery.ui.touch-punch.min.js")),format.raw/*60.83*/(""""></script>
-        <script src=""""),_display_(/*61.23*/routes/*61.29*/.Assets.at("javascripts/raphael-min.js")),format.raw/*61.69*/(""""></script>
-        <script src=""""),_display_(/*62.23*/routes/*62.29*/.Assets.at("javascripts/morris-0.4.3.min.js")),format.raw/*62.74*/(""""></script>
+        <script src=""""),_display_(/*59.23*/routes/*59.29*/.Assets.at("javascripts/sparkline-chart.js")),format.raw/*59.73*/(""""></script>    
+        <script src=""""),_display_(/*60.23*/routes/*60.29*/.Assets.at("javascripts/zabuto_calendar.js")),format.raw/*60.73*/(""""></script>
+        <script src=""""),_display_(/*61.23*/routes/*61.29*/.Assets.at("javascripts/jquery-ui-1.9.2.custom.min.js")),format.raw/*61.84*/(""""></script>
+        <script src=""""),_display_(/*62.23*/routes/*62.29*/.Assets.at("javascripts/jquery.ui.touch-punch.min.js")),format.raw/*62.83*/(""""></script>
         <script type="text/javascript" src=""""),_display_(/*63.46*/routes/*63.52*/.Assets.at("javascripts/jquery.canvasjs.min.js")),format.raw/*63.100*/(""""></script>
         <script type="text/javascript" src=""""),_display_(/*64.46*/routes/*64.52*/.Application.javascriptRoutes()),format.raw/*64.83*/(""""></script>
 </html>
@@ -103,11 +103,11 @@ Seq[Any](format.raw/*1.32*/("""
 }
               /*
                   -- GENERATED --
-                  DATE: Tue Mar 10 16:01:43 PDT 2015
+                  DATE: Tue Mar 10 22:50:16 PDT 2015
                   SOURCE: /home/ramyaky/Ramya/play-2.2.4/CMPE282Project-master/app/views/main.scala.html
-                  HASH: d4605f2400e94d77d91f0ea9d2e7495cfdcf7e67
-                  MATRIX: 727->1|845->31|873->33|1268->401|1294->406|1383->468|1398->474|1453->508|1541->569|1556->575|1609->607|1677->648|1692->654|1752->693|1848->762|1863->768|1931->815|2015->872|2030->878|2097->923|2181->980|2196->986|2274->1042|2358->1099|2373->1105|2427->1138|2553->1237|2568->1243|2624->1278|2692->1319|2707->1325|2774->1371|2842->1412|2857->1418|2924->1464|2985->1498|3000->1504|3057->1540|3126->1582|3141->1588|3207->1633|3291->1690|3306->1696|3374->1743|3802->2144|3830->2151|3862->2156|3924->2191|3939->2197|3995->2232|4056->2266|4071->2272|4137->2317|4202->2355|4217->2361|4280->2403|4380->2476|4395->2482|4470->2535|4531->2569|4546->2575|4615->2623|4676->2657|4691->2663|4758->2709|4842->2766|4857->2772|4923->2817|5029->2896|5044->2902|5108->2945|5197->3007|5212->3013|5288->3067|5372->3124|5387->3130|5449->3171|5547->3242|5562->3248|5627->3292|5692->3330|5707->3336|5772->3380|5833->3414|5848->3420|5924->3475|5985->3509|6000->3515|6075->3569|6136->3603|6151->3609|6212->3649|6273->3683|6288->3689|6354->3734|6438->3791|6453->3797|6523->3845|6607->3902|6622->3908|6674->3939
-                  LINES: 26->1|29->1|31->3|41->13|41->13|42->14|42->14|42->14|43->15|43->15|43->15|44->16|44->16|44->16|46->18|46->18|46->18|47->19|47->19|47->19|48->20|48->20|48->20|49->21|49->21|49->21|52->24|52->24|52->24|53->25|53->25|53->25|54->26|54->26|54->26|56->28|56->28|56->28|57->29|57->29|57->29|58->30|58->30|58->30|66->38|66->38|67->39|69->41|69->41|69->41|70->42|70->42|70->42|71->43|71->43|71->43|72->44|72->44|72->44|73->45|73->45|73->45|74->46|74->46|74->46|75->47|75->47|75->47|79->51|79->51|79->51|81->53|81->53|81->53|82->54|82->54|82->54|85->57|85->57|85->57|86->58|86->58|86->58|87->59|87->59|87->59|88->60|88->60|88->60|89->61|89->61|89->61|90->62|90->62|90->62|91->63|91->63|91->63|92->64|92->64|92->64
+                  HASH: 808f710cad095de919690c7cbed7d137c914bc6d
+                  MATRIX: 727->1|845->31|873->33|1268->401|1294->406|1383->468|1398->474|1453->508|1541->569|1556->575|1609->607|1677->648|1692->654|1752->693|1848->762|1863->768|1931->815|2015->872|2030->878|2097->923|2181->980|2196->986|2274->1042|2358->1099|2373->1105|2427->1138|2553->1237|2568->1243|2624->1278|2692->1319|2707->1325|2774->1371|2842->1412|2857->1418|2924->1464|2985->1498|3000->1504|3057->1540|3126->1582|3141->1588|3207->1633|3291->1690|3306->1696|3374->1743|3435->1777|3450->1783|3511->1823|3572->1857|3587->1863|3647->1902|4075->2303|4103->2310|4135->2315|4197->2350|4212->2356|4268->2391|4329->2425|4344->2431|4410->2476|4475->2514|4490->2520|4553->2562|4653->2635|4668->2641|4743->2694|4804->2728|4819->2734|4888->2782|4949->2816|4964->2822|5031->2868|5115->2925|5130->2931|5196->2976|5302->3055|5317->3061|5381->3104|5470->3166|5485->3172|5561->3226|5645->3283|5660->3289|5722->3330|5820->3401|5835->3407|5900->3451|5965->3489|5980->3495|6045->3539|6106->3573|6121->3579|6197->3634|6258->3668|6273->3674|6348->3728|6432->3785|6447->3791|6517->3839|6601->3896|6616->3902|6668->3933
+                  LINES: 26->1|29->1|31->3|41->13|41->13|42->14|42->14|42->14|43->15|43->15|43->15|44->16|44->16|44->16|46->18|46->18|46->18|47->19|47->19|47->19|48->20|48->20|48->20|49->21|49->21|49->21|52->24|52->24|52->24|53->25|53->25|53->25|54->26|54->26|54->26|56->28|56->28|56->28|57->29|57->29|57->29|58->30|58->30|58->30|59->31|59->31|59->31|60->32|60->32|60->32|68->40|68->40|69->41|71->43|71->43|71->43|72->44|72->44|72->44|73->45|73->45|73->45|74->46|74->46|74->46|75->47|75->47|75->47|76->48|76->48|76->48|77->49|77->49|77->49|81->53|81->53|81->53|83->55|83->55|83->55|84->56|84->56|84->56|87->59|87->59|87->59|88->60|88->60|88->60|89->61|89->61|89->61|90->62|90->62|90->62|91->63|91->63|91->63|92->64|92->64|92->64
                   -- GENERATED --
               */
           
