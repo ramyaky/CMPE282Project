@@ -1,4 +1,4 @@
-name := "projectcmpe282"
+name := "CMPE282Project-master"
 
 version := "1.0-SNAPSHOT"
 

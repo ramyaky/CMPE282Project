@@ -9,8 +9,8 @@ GET     /viewCowDetails                            controllers.Application.viewC
 GET     /simulation                                controllers.Application.simulationProcess()
 GET     /viewCowDetails/individualCow              controllers.Application.viewIndividualCow(cowIdentifier: String)
 GET        /viewCowDetails/secondGraph        controllers.Application.secondGraph(cowIdentifier: String)
-GET     /login                                  controllers.Application.login()
 GET        /viewCowDetails/thirdGraph        controllers.Application.thirdGraph(cowIdentifier: String)
+POST     /login                        controllers.Application.login()
 POST   /predictiveanalysis          controllers.Application.predictiveAnalysis()
 # Javascript routing
 GET    /assets/javascripts/routes                  controllers.Application.javascriptRoutes()

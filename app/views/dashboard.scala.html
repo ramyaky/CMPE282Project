@@ -88,6 +88,7 @@
                                   <div style="font-size: xx-large;color: #FF865C;padding-top: 100px;">
                                   @heatIndex
                                   </div>
+                                <br></br> <br></br>
                                 <button type="button" class="btn btn-theme" onclick="JSONTest();"><i class="fa fa-check"></i> Update Linear Regression</button>
                                 <!-- <canvas id="bar1" height="300" width="300"></canvas>
                                 <script>
@@ -120,9 +121,8 @@
                                 </div>
                                 <div class="chart mt">
                                 <!-- <iframe src="http://free.timeanddate.com/countdown/i4kqqwpd/n283/cf13/cm0/cu4/ct3/cs0/ca0/co1/cr0/ss0/cacfff/cpcfff/pct/tcfff/fs110/szw448/szh189/tat/tacfff/tpt/tpcfff/iso2015-03-08T00:00:00" allowTransparency="true" frameborder="0" width="230" height="135"></iframe> -->
-                                    <div class="sparkline" data-type="line" data-resize="true" data-height="75" data-width="90%" data-line-width="1" data-line-color="#fff" data-spot-color="#fff" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="4" data-data="@jsonResult">></div>
-                                </div>
-                                <p class="mt"><b>$ 17,980</b><br/>Month Income</p>
+                                <div id="savings-bar" style="height:300px" class="custom-bar-chart"></div>
+                              </div>
                             </div>
                         </div><!-- /col-md-4 -->
                         
@@ -353,6 +353,33 @@
             xLabelAngle: 35,
             hideHover: 'auto',
             barColors: ['#FF865C',]
+            });
+
+        var savings = @Html(jsonResult);
+        var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        
+        for(var i = 0; i < savings.length; i++) {
+              var b = savings[i];
+              for(var k in b) {
+                  if(k == "y") {
+                      b[k] = parseFloat(b[k]);
+                  }
+                  if(k == "x") {
+                      b[k] = months[b[k]];
+                  }
+              }
+        } 
+
+        Morris.Bar({
+            element: 'savings-bar',
+            data: savings,
+            xkey: 'x',
+            ykeys: ['y'],
+            labels: ['dollars($)'],
+            barRatio: 0.4,
+            xLabelAngle: 1,
+            hideHover: 'auto',
+            barColors: ['#c9aa5f',]
             });
 
     </script> 

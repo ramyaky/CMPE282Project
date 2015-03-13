@@ -17,10 +17,13 @@ import org.parse4j.Parse;
 import org.parse4j.ParseException;
 import org.parse4j.ParseObject;
 import org.parse4j.ParseQuery;
+import org.parse4j.ParseUser;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import org.apache.commons.math3.stat.regression.SimpleRegression;
 
+import play.data.DynamicForm;
+import play.data.Form;
 import play.*;
 import play.libs.Json;
 import play.mvc.*;
@@ -35,86 +38,150 @@ public class Application extends Controller {
     public static ArrayList<Double> bodyTemp = new ArrayList<Double>();
     public static ArrayList<Double> rangeList = new ArrayList<Double>();
 
-	public static Result index() {
-		return ok(index.render("Your new application is ready."));
-	}
-	public static Result login(){
-		Logger.debug("------Entered into login() method in Application Controller------");
+    public static Result index() {
+        return ok(login.render("Your new application is ready.",""));
+    }
+	
+    public static Result login() throws ParseException{
+        Logger.debug("------Entered into login() method in Application Controller------");
+        DynamicForm form = Form.form().bindFromRequest();
+        String ErrorMessage="";
 
-		Logger.debug("------Exit from login() method in Application Controller------");
-		return ok(login.render("Dashboard Page"));
-	}
-	public static Result dashboard() throws ParseException {
+        if(form.get("username") != null && form.get("password") != null){
+            Parse.initialize("XIboxpRHULEdPtgn6eL7IlScEW3l0tgRVkeTLyKs", "OofZ3FPeAMsgtdr1xFcT7Fn5iQQylB8EHukX406O");
+            List<ParseUser> users = new ArrayList<ParseUser>();
+
+            ParseQuery<ParseUser> teamQuery = ParseQuery.getQuery("_User");
+            users = teamQuery.find();
+            for(ParseUser user: users){
+                if(user.getUsername().equals(form.get("username"))){
+                    try{
+                        ParseUser to = ParseUser.login(user.getUsername(), form.get("password"));
+                        session("username", to.getUsername());
+                        return redirect("/dashboard");
+                    }
+                    catch(ParseException pe){
+                        //pe.printStackTrace();
+                        if(pe.getMessage().contains("invalid login parameters")){
+                            ErrorMessage = "Invalid UserName and Password";
+                        }
+                        if(pe.getMessage().contains("Name or service not known")){
+                            ErrorMessage = "Connection Failed";
+                        }
+                    }
+                }
+            }
+        }
+        Logger.debug("------Exit from login() method in Application Controller------");
+        return ok(login.render("Login Page",ErrorMessage));
+    }
+
+    public static Result dashboard() throws ParseException {
+
+        //play.mvc.Http.Context.current().session().put("hi", "eww");
+        ArrayList<Integer> chartvalues = new ArrayList<Integer>();
+        chartvalues.add(65);
+        chartvalues.add(59);
+        chartvalues.add(90);
+        chartvalues.add(81);
+
+        List<ParseObject> cowObjects = new ArrayList<ParseObject>();
+        Set<Object> noOfCowsInCattle = new HashSet<Object>();
+        ArrayList<ParseObject> noOfSickCows = new ArrayList<ParseObject>();
+        List<String> notifications = new ArrayList<String>();
+        HashMap<Integer, ArrayList<ParseObject>> monthMap = new HashMap<Integer, ArrayList<ParseObject>>();
+        ParseQuery<ParseObject> cowQuery = ParseQuery.getQuery("cowPriceDetails");
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("MyTestObject");
+        HashMap<String,Double> monthlysavings = new HashMap<String,Double>();
+        List<Map<String, Double>> savingsList = new ArrayList<Map<String, Double>>();
+        int month = 0;
         Date date = new Date();
-		//play.mvc.Http.Context.current().session().put("hi", "eww");
-		ArrayList<Integer> chartvalues = new ArrayList<Integer>();
-		chartvalues.add(65);
-		chartvalues.add(59);
-		chartvalues.add(90);
-		chartvalues.add(81);
+        double savings = 0.0;
+        String statusOk = "Abnormal";
 
-		JsonNode myJsonNode = Json.toJson(chartvalues);
-		String jsonResult = Json.stringify(myJsonNode);
-		
-		List<ParseObject> cowObjects = new ArrayList<ParseObject>();
-		Set<Object> noOfCowsInCattle = new HashSet<Object>();
-		ArrayList<ParseObject> noOfSickCows = new ArrayList<ParseObject>();
-		List<String> notifications = new ArrayList<String>();
-		
-		String statusOk = "Abnormal";
+        //Parse.initialize("XIboxpRHULEdPtgn6eL7IlScEW3l0tgRVkeTLyKs", "OofZ3FPeAMsgtdr1xFcT7Fn5iQQylB8EHukX406O");
+        Parse.initialize("f5GFzmulS2Utcgxct7GSTrxAFqdfftPOx9gkf8l8", "DuuCkneE6gphtMnHWaBd2PoZnQRh7tLys9HQ3hSP");
+        
+        query.orderByDescending("createdAt");
+        cowObjects = query.find();    
+        ParseObject heatIndex =  cowObjects.get(0);
+        double HI = 0.5 * (heatIndex.getInt("AmbientTemp") + 61.0 + ((heatIndex.getInt("AmbientTemp") - 68.0) * 1.2) + (heatIndex.getInt("Humidity") * 0.094));
 
-		//Parse.initialize("XIboxpRHULEdPtgn6eL7IlScEW3l0tgRVkeTLyKs", "OofZ3FPeAMsgtdr1xFcT7Fn5iQQylB8EHukX406O");
-		
-		Parse.initialize("f5GFzmulS2Utcgxct7GSTrxAFqdfftPOx9gkf8l8", "DuuCkneE6gphtMnHWaBd2PoZnQRh7tLys9HQ3hSP");
-		ParseQuery<ParseObject> query = ParseQuery.getQuery("MyTestObject");
-		query.orderByDescending("createdAt");
-		cowObjects = query.find();	
-		
-		ParseObject heatIndex =  cowObjects.get(0);
-		double HI = 0.5 * (heatIndex.getInt("AmbientTemp") + 61.0 + ((heatIndex.getInt("AmbientTemp") - 68.0) * 1.2) + (heatIndex.getInt("Humidity") * 0.094));
-		
-		for(ParseObject cowObject : cowObjects){
-			
-			noOfCowsInCattle.add(cowObject.get("CowID"));
-		}
-		
-		ArrayList<HashMap> cowTempArr = new ArrayList<HashMap>();
-		for (Object thirdGraph : noOfCowsInCattle) {
-		    HashMap<String,String> thirdGraphMap = new HashMap<String,String>();
-			ParseQuery<ParseObject> queryGraph = ParseQuery.getQuery("MyTestObject");
-			queryGraph.orderByDescending("createdAt");
-			queryGraph.whereEqualTo("CowID",thirdGraph);
-			ParseObject dudu = queryGraph.find().get(0);
-			
-			if((Integer)dudu.getInt("ChanceOfSick") == 4)
-				noOfSickCows.add(dudu);
-			
-			thirdGraphMap.put("cow", "cow" + thirdGraph.toString());
-			thirdGraphMap.put("temperature",dudu.getInt("BodyTemp") +"");
-			cowTempArr.add(thirdGraphMap);
-		    GregorianCalendar cal = new GregorianCalendar();
+        for(ParseObject cowObject : cowObjects){
+
+            noOfCowsInCattle.add(cowObject.get("CowID"));
+            month = cowObject.getCreatedAt().getMonth();
+            ArrayList<ParseObject> cows = monthMap.get(month);
+            if(cows == null) {
+                cows = new ArrayList<ParseObject>();
+            }
+            if(cowObject.getInt("ChanceOfSick") == 4){
+                cows.add(cowObject);
+                }
+            monthMap.put(month, cows);
+        }
+        for (Map.Entry<Integer, ArrayList<ParseObject>> entry : monthMap.entrySet()) {
+            Integer keyMonth = entry.getKey();
+            ArrayList<ParseObject> valueCows = entry.getValue();
+            HashSet<Object> uniquecowValues = new HashSet<Object>();
+            for(ParseObject cowObject : valueCows){
+
+                uniquecowValues.add(cowObject.get("CowID"));
+            }
+            for(Object eachValue: uniquecowValues){
+                cowQuery.whereEqualTo("CowID", eachValue);
+                ParseObject cowWeights = cowQuery.find().get(0);
+                    savings += (cowWeights.getInt("Price")) - (12 * (cowWeights.getInt("Weight")/500));
+            }
+            monthlysavings.put("x", (double)keyMonth);
+            monthlysavings.put("y", savings);
+            savingsList.add(monthlysavings);
+        }
+        JsonNode myJsonNode = Json.toJson(savingsList);
+        String jsonResult = Json.stringify(myJsonNode);
+
+
+        ArrayList<HashMap> cowTempArr = new ArrayList<HashMap>();
+        for (Object thirdGraph : noOfCowsInCattle) {
+            HashMap<String,String> thirdGraphMap = new HashMap<String,String>();
+            ParseQuery<ParseObject> queryGraph = ParseQuery.getQuery("MyTestObject");
+            queryGraph.orderByDescending("createdAt");
+            queryGraph.whereEqualTo("CowID",thirdGraph);
+            ParseObject dudu = queryGraph.find().get(0);
+
+            if((Integer)dudu.getInt("ChanceOfSick") == 4){
+                noOfSickCows.add(dudu);
+            }
+
+            thirdGraphMap.put("cow", "cow" + thirdGraph.toString());
+            thirdGraphMap.put("temperature",dudu.getInt("BodyTemp") +"");
+            cowTempArr.add(thirdGraphMap);
+
+            GregorianCalendar cal = new GregorianCalendar();
             cal.setTime(date);
             date = truncateTime( cal );
             Date d3 = dudu.getCreatedAt();
-                d3  =  truncateTime( cal );
+            d3  =  truncateTime( cal );
             if(0 == d3.compareTo(date) && ((Integer)dudu.getInt("Sick") == 1)){
-            notifications.add("Cow"+thirdGraph.toString()+" experienced sudden rise in its body temperature");
-            }	
-		}
-		
-		if(noOfSickCows.size() == 0){
-			statusOk = "OK";
-		}
-		
-		JsonNode JsonNode = Json.toJson(cowTempArr);
-		String myjsonResult = Json.stringify(JsonNode);
-		
-		JsonNode JsonNodeNote = Json.toJson(notifications);
-		String notify = Json.stringify(JsonNodeNote);
-		System.out.println("myjsonResult: "+ myjsonResult);
+                notifications.add("Cow"+thirdGraph.toString()+" experienced sudden rise in its body temperature");
+            }
 
-		return ok(dashboard.render("HelloWorld",noOfCowsInCattle.size()+"",statusOk,noOfSickCows.size()+"",jsonResult,HI+"",myjsonResult,notifications));
-	}
+        }
+
+        if(noOfSickCows.size() == 0){
+            statusOk = "OK";
+        }
+
+        JsonNode JsonNode = Json.toJson(cowTempArr);
+        String myjsonResult = Json.stringify(JsonNode);
+
+        JsonNode JsonNodeNote = Json.toJson(notifications);
+        String notify = Json.stringify(JsonNodeNote);
+        System.out.println("myjsonResult: "+ myjsonResult);
+
+        return ok(dashboard.render("HelloWorld",noOfCowsInCattle.size()+"",statusOk,noOfSickCows.size()+"",jsonResult,HI+"",myjsonResult,notifications));
+    }
+
 
 	public static Result viewIndividualCow(String cowIdentifier) throws ParseException {
         System.out.println("cowIdentifier:" + cowIdentifier);
@@ -281,13 +348,11 @@ public class Application extends Controller {
                     
                     final ParseQuery<ParseObject> testdetails = ParseQuery.getQuery("MyTestObject");
                     testdetails.orderByDescending("createdAt");
-                    //testdetails.whereContains("Sick","1");
 
-               try {System.out.println("Calculating range values ");
+               try {
                     List<ParseObject> rangeValues = testdetails.find();
                     rangeCounter.addAll(rangeValues);
                     for (ParseObject rangeval : rangeCounter) {
-                        System.out.println("In try2 ");
                         int sickVal=rangeval.getInt("Sick");
                         if(sickVal==1)
                         {
@@ -304,20 +369,17 @@ public class Application extends Controller {
                 
                 final ParseQuery<ParseObject> equadetails = ParseQuery.getQuery("EquationDetails");
                 equadetails.orderByDescending("createdAt");
-                try {System.out.println("In Updating ");
+                try {
                     List<ParseObject> recOne = equadetails.find();
                     sickChanceOne.addAll(recOne);
                     for (ParseObject sickness : sickChanceOne) {
-                        System.out.println("In updating2 ");
                         double slope1 = sickness.getDouble("Slope");
                         String objId = sickness.getObjectId();
-                        System.out.println("retrieving ObjectID " + objId);
                         ParseQuery<ParseObject> updatequery = ParseQuery.getQuery("EquationDetails");
                         updatequery.get(objId);
                         List<ParseObject> recOne1 = updatequery.find();
                         sickChanceOne1.addAll(recOne1);
                         for (ParseObject sickupdate : sickChanceOne1) {
-                            System.out.println("In try3 ");
                             sickupdate.put("Slope", slope);
                             sickupdate.put("Intercept", intercept);
                             sickupdate.put("Range", range);
@@ -328,30 +390,6 @@ public class Application extends Controller {
                        e1.printStackTrace();
                    }
         return ok();
-    }
-
-    public static void updateChanceOfSick(int chance) throws ParseException{
-        ParseObject chanceobject = new ParseObject("ChanceOfSickCounter");
-        chanceobject.put("counter", chance);
-        chanceobject.save();
-        System.out.println("*******Updated remote files.******");
-    }
-
-    public static int chanceOfSickness() {
-        int chance=0;
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("ChanceOfSickCounter");
-        query.orderByDescending("createdAt").limit(1);
-        List<ParseObject> rec = null;
-        try {
-            rec = query.find();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        sickChance.addAll(rec);
-        for (ParseObject sickness : sickChance) {
-            chance = (Integer) sickness.get("counter");
-        }
-        return chance;
     }
 
     public static double randDouble(double min, double max) {
